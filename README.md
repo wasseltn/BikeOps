@@ -15,5 +15,10 @@ Routing
 
 * keep the front routing seperated from the back routing
 
+To Push 
+========================
 
-*Push work to your respository then create pull request
+* Commit & push to your repository
+* Create a merge Request on github.com 
+* One Person accepts the requests To wassel's Repository
+
