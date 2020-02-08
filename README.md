@@ -14,3 +14,6 @@ Routing
 ========================
 
 * keep the front routing seperated from the back routing
+
+
+*Push work to your respository then create pull request
