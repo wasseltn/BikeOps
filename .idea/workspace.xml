@@ -14,6 +14,9 @@
       <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="e82183a9-a750-4f76-b73c-0a410be4f376" />
     </execution>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/jdorn/sql-formatter" />
@@ -58,6 +61,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1XWPJUcpRkoRBlttR77GFCWdRqb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/fosuer" />
@@ -93,11 +97,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581158806062</updated>
-      <workItem from="1581159415304" duration="4899000" />
+      <workItem from="1581159415304" duration="5769000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
