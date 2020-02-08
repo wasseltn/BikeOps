@@ -1,0 +1,12 @@
+# Front Office Routing
+bike_homepage:
+    path:     /
+    defaults: { _controller: BikeBundle:Default:index }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# Back Office Routing
+bike_admin_homepage:
+    path:     /
+    defaults: { _controller: BikeBundle:Default:indexAdmin }
