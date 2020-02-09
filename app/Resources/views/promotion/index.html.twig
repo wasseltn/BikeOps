@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Promotions list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Pourcentagereducation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for promotion in promotions %}
+            <tr>
+                <td><a href="{{ path('promotion_show', { 'id': promotion.id }) }}">{{ promotion.id }}</a></td>
+                <td>{% if promotion.dateDebut %}{{ promotion.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if promotion.dateFin %}{{ promotion.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ promotion.pourcentageReducation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('promotion_show', { 'id': promotion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('promotion_new') }}">Create a new promotion</a>
+        </li>
+    </ul>
+{% endblock %}
