@@ -22,6 +22,6 @@ To Push
 
 * Commit & push to your repository
 * Create a merge Request on github.com 
-* One Person accepts the requests
+
 
 
