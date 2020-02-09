@@ -1,3 +1,7 @@
+bike_evenement:
+    resource: "@BikeBundle/Resources/config/routing/evenement.yml"
+    prefix:   /evenement
+
 # Front Office Routing
 bike_homepage:
     path:     /
@@ -10,3 +14,6 @@ fos_user:
 bike_admin_homepage:
     path:     /
     defaults: { _controller: BikeBundle:Default:indexAdmin }
+bike_reclamation:
+    resource: "@BikeBundle/Resources/config/routing/reclamation.yml"
+    prefix:   /reclamation
