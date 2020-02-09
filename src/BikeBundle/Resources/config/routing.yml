@@ -1,6 +1,10 @@
+bike_livraison:
+    resource: "@BikeBundle/Resources/config/routing/livraison.yml"
+    prefix:   /livraison
+
 # Front Office Routing
 bike_homepage:
-    path:     /
+    path:     /b
     defaults: { _controller: BikeBundle:Default:index }
 
 fos_user:
@@ -10,3 +14,7 @@ fos_user:
 bike_admin_homepage:
     path:     /
     defaults: { _controller: BikeBundle:Default:indexAdmin }
+
+bike_promotion:
+    resource: "@BikeBundle/Resources/config/routing/promotion.yml"
+    prefix:   /promotion
