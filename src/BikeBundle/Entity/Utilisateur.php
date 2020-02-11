@@ -55,11 +55,31 @@ class Utilisateur extends BaseUser
      */
     private $carteFid;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Panier", mappedBy="utilisateur", cascade={"persist"})
+     */
+    private $panier;
+
     public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPanier()
+    {
+        return $this->panier;
+    }
+
+    /**
+     * @param mixed $panier
+     */
+    public function setPanier($panier)
+    {
+        $this->panier = $panier;
+    }
 
 
     /**

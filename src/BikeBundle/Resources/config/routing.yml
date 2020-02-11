@@ -15,6 +15,10 @@ signup:
     path:     /signup
     defaults: { _controller: BikeBundle:Default:signUp }
 
+mycart:
+    path:     /mycart
+    defaults: { _controller: BikeBundle:Panier:show }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
@@ -38,6 +42,13 @@ bike_commande:
     resource: "@BikeBundle/Resources/config/routing/commande.yml"
     prefix:     /commande
 
+bike_panier:
+    resource: "@BikeBundle/Resources/config/routing/panier.yml"
+    prefix:     /panier
+
+bike_line_item:
+    resource: "@BikeBundle/Resources/config/routing/lineitem.yml"
+    prefix:     /lineitem
 
 # Back Office Routing
 bike_admin_homepage:

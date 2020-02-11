@@ -2,6 +2,7 @@
 
 namespace BikeBundle\Controller;
 
+use BikeBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -13,7 +14,12 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
-        return $this->render('home.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $produits = $em->getRepository(Produit::class)->findAll();
+        return $this->render('home.html.twig', array(
+            'produits' => $produits,
+        ));
     }
 
     public function signUpAction()
@@ -30,5 +36,10 @@ class DefaultController extends Controller
     public function myprofileAction()
     {
         return $this->render('profile/profile.html.twig');
+    }
+
+    public function myCartAction()
+    {
+        return $this->render('panier/mycart.html.twig');
     }
 }

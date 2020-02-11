@@ -1,6 +1,3 @@
-
-
-
 bike:
     resource: "@BikeBundle/Resources/config/routing.yml"
     prefix:   /

@@ -168,10 +168,10 @@
     <parameter key="security.authentication.trust_resolver.anonymous_class">Symfony\Component\Security\Core\Authentication\Token\AnonymousToken</parameter>
     <parameter key="security.authentication.trust_resolver.rememberme_class">Symfony\Component\Security\Core\Authentication\Token\RememberMeToken</parameter>
     <parameter key="security.role_hierarchy.roles" type="collection">
-      <parameter key="ROLE_ADMIN" type="collection">
+      <parameter key="ROLE_USER" type="collection">
         <parameter>ROLE_USER</parameter>
       </parameter>
-      <parameter key="ROLE_SUPER_ADMIN" type="collection">
+      <parameter key="ROLE_ADMIN" type="collection">
         <parameter>ROLE_ADMIN</parameter>
       </parameter>
     </parameter>
@@ -1760,14 +1760,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -3105,6 +3097,14 @@
         <argument>!Doctrine</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
+        <argument>Bike</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
+        <argument>!Bike</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
         <argument>FOSUser</argument>
       </call>
@@ -3282,6 +3282,14 @@
       <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\doctrine\doctrine-bundle/Resources/views</argument>
         <argument>!Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
+        <argument>Bike</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
+        <argument>!Bike</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\friendsofsymfony\user-bundle/Resources/views</argument>

@@ -3,7 +3,7 @@
 namespace BikeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Panier
  *
@@ -21,13 +21,12 @@ class Panier
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nbProduit", type="integer")
-     */
-    private $nbProduit;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="LineItem", mappedBy="panier")
+     */
+    private $lineItems;
 
 
     /**
@@ -36,6 +35,60 @@ class Panier
      * @ORM\Column(name="total", type="integer")
      */
     private $total;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     */
+    private $utilisateur;
+
+    /**
+     * @return mixed
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    /**
+     * @param mixed $utilisateur
+     */
+    public function setUtilisateur($utilisateur)
+    {
+        $this->utilisateur = $utilisateur;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getLineItems()
+    {
+        return $this->lineItems;
+    }
+
+    /**
+     * @param mixed $lineItems
+     */
+    public function setLineItems($lineItems)
+    {
+        $this->lineItems = $lineItems;
+    }
+
+    /**
+     * @param LineItem $item
+     */
+    public function addLineItems($item)
+    {
+        $item->setPanier($this);
+        $this->lineItems->add($item);
+    }
+
+    public function __construct()
+    {
+        $this->lineItems = new ArrayCollection();
+    }
 
 
     /**
@@ -48,29 +101,6 @@ class Panier
         return $this->id;
     }
 
-    /**
-     * Set nbProduit
-     *
-     * @param integer $nbProduit
-     *
-     * @return Panier
-     */
-    public function setNbProduit($nbProduit)
-    {
-        $this->nbProduit = $nbProduit;
-
-        return $this;
-    }
-
-    /**
-     * Get nbProduit
-     *
-     * @return int
-     */
-    public function getNbProduit()
-    {
-        return $this->nbProduit;
-    }
 
     /**
      * Set total
