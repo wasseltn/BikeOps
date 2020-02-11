@@ -8,10 +8,18 @@ class DefaultController extends Controller
 {
     public function indexAdminAction()
     {
-        return $this->render('@Bike/Admin/index.html.twig');
+        return $this->render('base.html.twig');
     }
 
     public function indexAction () {
-        return $this->render('@Bike/Default/index.html.twig');
+        return $this->render('home.html.twig');
+    }
+
+    public function signUpAction () {
+        return $this->render('signup.html.twig');
+    }
+
+    public function loginAction () {
+        return $this->render('login.html.twig');
     }
 }

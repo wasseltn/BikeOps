@@ -1,24 +1,27 @@
-bike_livraison:
-    resource: "@BikeBundle/Resources/config/routing/livraison.yml"
-    prefix:   /livraison
-
 # Front Office Routing
 bike_homepage:
-    path:     /b
+    path:     /
     defaults: { _controller: BikeBundle:Default:index }
+
+login:
+    path:     /user_login
+    defaults: { _controller: BikeBundle:Default:login }
+
+signup:
+    path:     /signup
+    defaults: { _controller: BikeBundle:Default:signUp }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-# Back Office Routing
-bike_admin_homepage:
-    path:     /
-    defaults: { _controller: BikeBundle:Default:indexAdmin }
-    
+bike_livraison:
+    resource: "@BikeBundle/Resources/config/routing/livraison.yml"
+    prefix:   /livraison
+
 bike_promotion:
     resource: "@BikeBundle/Resources/config/routing/promotion.yml"
     prefix:   /promotion
-    
+
 bike_evenement:
     resource: "@BikeBundle/Resources/config/routing/evenement.yml"
     prefix:   /evenement
@@ -26,3 +29,8 @@ bike_evenement:
 bike_reclamation:
     resource: "@BikeBundle/Resources/config/routing/reclamation.yml"
     prefix:   /reclamation
+
+# Back Office Routing
+bike_admin_homepage:
+    path:     /admin
+    defaults: { _controller: BikeBundle:Default:indexAdmin }

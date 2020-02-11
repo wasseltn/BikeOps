@@ -55,6 +55,12 @@ class Utilisateur extends BaseUser
      */
     private $carteFid;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+
 
     /**
      * Get id
