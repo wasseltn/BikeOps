@@ -28,6 +28,8 @@ class Panier
      */
     private $nbProduit;
 
+
+
     /**
      * @var int
      *

@@ -8,18 +8,27 @@ class DefaultController extends Controller
 {
     public function indexAdminAction()
     {
-        return $this->render('base.html.twig');
+        return $this->render('admin_home.html.twig');
     }
 
-    public function indexAction () {
+    public function indexAction()
+    {
         return $this->render('home.html.twig');
     }
 
-    public function signUpAction () {
+    public function signUpAction()
+    {
         return $this->render('signup.html.twig');
     }
 
-    public function loginAction () {
+    public function loginAction()
+    {
         return $this->render('login.html.twig');
+
+    }
+
+    public function myprofileAction()
+    {
+        return $this->render('profile/profile.html.twig');
     }
 }
