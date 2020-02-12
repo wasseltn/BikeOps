@@ -150,11 +150,12 @@ class PanierController extends Controller
         # get an object from doctrine db and get Shipping Entity to work on it
         $em = $this->getDoctrine()->getManager();
 
+
         # select wanted item from shipping table to delete it
         /* @var \BikeBundle\Entity\LineItem $lineItem */
         $lineItem = $this->getDoctrine()->getRepository(LineItem::class)
             ->findOneBy(['produit' => $itemProduct, 'panier' => $itemCart]);
-
+ 
         # Calculate the new total price for cart by subtract deleted item price from total one
         $final_price = $lineItem->getPanier()->getTotal() - ($lineItem->getProduit()->getPrix() * $lineItem->getQuantite());
 
