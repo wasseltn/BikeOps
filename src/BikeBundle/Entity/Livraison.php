@@ -36,16 +36,26 @@ class Livraison
     private $adresse;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Livreur")
+     * @ORM\JoinColumn(name="livreurId", referencedColumnName="id")
      */
-    private $utilisateur;
+    private $livreurId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Commande")
-     * @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     * @return mixed
      */
-    private $commande;
+    public function getLivreurId()
+    {
+        return $this->livreurId;
+    }
+
+    /**
+     * @param mixed $livreurId
+     */
+    public function setLivreurId($livreurId)
+    {
+        $this->livreurId = $livreurId;
+    }
 
     /**
      * Get id
