@@ -9,7 +9,7 @@ Commande_show:
     methods:  GET
 
 Commande_new:
-    path:     /new
+    path:     /new/{panier}
     defaults: { _controller: "BikeBundle:Commande:new" }
     methods:  [GET, POST]
 

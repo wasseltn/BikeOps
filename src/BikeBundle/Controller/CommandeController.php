@@ -3,6 +3,8 @@
 namespace BikeBundle\Controller;
 
 use BikeBundle\Entity\Commande;
+use BikeBundle\Entity\LineItem;
+use BikeBundle\Entity\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -14,123 +16,62 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class CommandeController extends Controller
 {
-    /**
-     * Lists all commande entities.
-     *
-     * @Route("/", name="Commande_index")
-     * @Method("GET")
-     */
-    public function indexAction()
+
+    public function precommandeAction($panier)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $commandes = $em->getRepository('BikeBundle:Commande')->findAll();
 
-        return $this->render('commande/index.html.twig', array(
-            'commandes' => $commandes,
-        ));
+
+        return $this->render('commande/precommande.html.twig', array('panier_data' => $panier));
     }
 
-    /**
-     * Creates a new commande entity.
-     *
-     * @Route("/new", name="Commande_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $panier)
     {
-        $commande = new Commande();
-        $form = $this->createForm('BikeBundle\Form\CommandeType', $commande);
-        $form->handleRequest($request);
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $panierObj = $em->getRepository(Panier::class)->find($panier);
+
+        $commandeObj = $em->getRepository(Commande::class)
+            ->findBy(['panier' => $panier, 'utilisateur' => $user ]);
+
+        if(sizeof($commandeObj) > 0) {
+            return $this->render('commande/final.html.twig');
+        } else {
+
+            $type_paiement = $request->query->get('paiement');
+
+            /* @var Commande $commande */
+            $commande = new Commande();
+            $commande->setPanier($panierObj);
+            $commande->setUtilisateur($user);
+            $commande->setDate(new \DateTime());
+            $commande->setEtat('en_attente');
+            $commande->setTypePaiment($type_paiement);
+
             $em->persist($commande);
             $em->flush();
 
-            return $this->redirectToRoute('Commande_show', array('id' => $commande->getId()));
+
+
+
+            /* Empty panier*/
+            # select wanted item from shipping table to delete it
+            $lines = $em->getRepository(LineItem::class)->findBy(array('panier' => $panier));
+
+            # Fetch all them using foeach loop and delete them
+            foreach ($lines as $one_prod)
+            {
+                # Remove item from db
+                $em->remove($one_prod);
+                $em->flush();
+            }
+
+            return $this->render('commande/final.html.twig');
         }
 
-        return $this->render('commande/new.html.twig', array(
-            'commande' => $commande,
-            'form' => $form->createView(),
-        ));
     }
 
-    /**
-     * Finds and displays a commande entity.
-     *
-     * @Route("/{id}", name="Commande_show")
-     * @Method("GET")
-     */
-    public function showAction(Commande $commande)
-    {
-        $deleteForm = $this->createDeleteForm($commande);
 
-        return $this->render('commande/show.html.twig', array(
-            'commande' => $commande,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing commande entity.
-     *
-     * @Route("/{id}/edit", name="Commande_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Commande $commande)
-    {
-        $deleteForm = $this->createDeleteForm($commande);
-        $editForm = $this->createForm('BikeBundle\Form\CommandeType', $commande);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('Commande_edit', array('id' => $commande->getId()));
-        }
-
-        return $this->render('commande/edit.html.twig', array(
-            'commande' => $commande,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a commande entity.
-     *
-     * @Route("/{id}", name="Commande_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Commande $commande)
-    {
-        $form = $this->createDeleteForm($commande);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($commande);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('Commande_index');
-    }
-
-    /**
-     * Creates a form to delete a commande entity.
-     *
-     * @param Commande $commande The commande entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Commande $commande)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Commande_delete', array('id' => $commande->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
 }

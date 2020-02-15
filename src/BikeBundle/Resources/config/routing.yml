@@ -19,6 +19,7 @@ mycart:
     path:     /mycart
     defaults: { _controller: BikeBundle:Panier:show }
 
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
@@ -49,6 +50,10 @@ bike_panier:
 bike_line_item:
     resource: "@BikeBundle/Resources/config/routing/lineitem.yml"
     prefix:     /lineitem
+
+precommande:
+    resource: "@BikeBundle/Resources/config/routing/precommande.yml"
+    prefix:     /precommande
 
 # Back Office Routing
 bike_admin_homepage:
