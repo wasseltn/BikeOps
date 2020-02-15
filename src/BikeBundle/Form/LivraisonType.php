@@ -2,6 +2,7 @@
 
 namespace BikeBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,7 @@ class LivraisonType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('etat')->add('adresse')->add('utilisateur')->add('commande');
+        $builder->add('etat')->add('adresse')->add('Livreur_id',EntityType::class,array('class'=>'BikeBundle:Livreur','choice_label'=>'nom'));
     }/**
      * {@inheritdoc}
      */
