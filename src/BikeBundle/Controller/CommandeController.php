@@ -41,7 +41,6 @@ class CommandeController extends Controller
         } else {
 
             $type_paiement = $request->query->get('paiement');
-            // $type_livraison = $request->query->get('livraison');
 
             /* @var Commande $commande */
             $commande = new Commande();
@@ -50,11 +49,14 @@ class CommandeController extends Controller
             $commande->setDate(new \DateTime());
             $commande->setEtat('en_attente');
             $commande->setTypePaiment($type_paiement);
-            // $commande->setTypeLivraison($livraison);
 
             $em->persist($commande);
             $em->flush();
 
+
+
+
+            /* Empty panier*/
             # select wanted item from shipping table to delete it
             $lines = $em->getRepository(LineItem::class)->findBy(array('panier' => $panier));
 
