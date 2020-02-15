@@ -52,7 +52,9 @@
         <tr>
             <td class="actions" colspan="6">
                 <a class="back-shop" href="#"><i class="fa fa-angle-left"></i> BACK TO SHOP</a>
-                <button class="update-cart" type="submit">update cart</button>
+                <a href='{{ path('precommande_new', {'panier': panier_data.getId()}) }}' class="update-cart">Checkout</a>
+
+
             </td>
         </tr>
 
