@@ -1,0 +1,5 @@
+precommande_new:
+  path:     /new/{panier}
+  defaults: { _controller: "BikeBundle:Commande:precommande" }
+  methods:  [GET, POST]
+

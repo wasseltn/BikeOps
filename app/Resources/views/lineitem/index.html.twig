@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lineitems list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lineItem in lineItems %}
+            <tr>
+                <td><a href="{{ path('lineitem_show', { 'id': lineItem.id }) }}">{{ lineItem.id }}</a></td>
+                <td>{{ lineItem.quantite }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('lineitem_show', { 'id': lineItem.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('lineitem_edit', { 'id': lineItem.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lineitem_new') }}">Create a new lineItem</a>
+        </li>
+    </ul>
+{% endblock %}

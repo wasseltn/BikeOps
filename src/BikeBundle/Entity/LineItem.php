@@ -28,8 +28,9 @@ class LineItem
      */
     private $quantite;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="Panier")
+     * @ORM\ManyToOne(targetEntity="Panier", inversedBy="lineItems")
      * @ORM\JoinColumn(name="panier_id", referencedColumnName="id")
      */
     private $panier;
