@@ -1,20 +1,56 @@
-bike_livraison:
-    resource: "@BikeBundle/Resources/config/routing/livraison.yml"
-    prefix:   /livraison
-
 # Front Office Routing
 bike_homepage:
-    path:     /b
+    path:     /
     defaults: { _controller: BikeBundle:Default:index }
+
+myprofile:
+    path:     /myprofile
+    defaults: { _controller: BikeBundle:Default:myprofile }
+
+login:
+    path:     /user_login
+    defaults: { _controller: BikeBundle:Default:login }
+
+signup:
+    path:     /signup
+    defaults: { _controller: BikeBundle:Default:signUp }
+
+mycart:
+    path:     /mycart
+    defaults: { _controller: BikeBundle:Panier:show }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-# Back Office Routing
-bike_admin_homepage:
-    path:     /
-    defaults: { _controller: BikeBundle:Default:indexAdmin }
+bike_livraison:
+    resource: "@BikeBundle/Resources/config/routing/livraison.yml"
+    prefix:   /livraison
 
 bike_promotion:
     resource: "@BikeBundle/Resources/config/routing/promotion.yml"
     prefix:   /promotion
+
+bike_evenement:
+    resource: "@BikeBundle/Resources/config/routing/evenement.yml"
+    prefix:   /evenement
+
+bike_reclamation:
+    resource: "@BikeBundle/Resources/config/routing/reclamation.yml"
+    prefix:   /reclamation
+
+bike_commande:
+    resource: "@BikeBundle/Resources/config/routing/commande.yml"
+    prefix:     /commande
+
+bike_panier:
+    resource: "@BikeBundle/Resources/config/routing/panier.yml"
+    prefix:     /panier
+
+bike_line_item:
+    resource: "@BikeBundle/Resources/config/routing/lineitem.yml"
+    prefix:     /lineitem
+
+# Back Office Routing
+bike_admin_homepage:
+    path:     /admin
+    defaults: { _controller: BikeBundle:Default:indexAdmin }
