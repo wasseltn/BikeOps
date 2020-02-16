@@ -42,4 +42,11 @@ class DefaultController extends Controller
     {
         return $this->render('panier/mycart.html.twig');
     }
+
+    public function loginAdminAction()
+    {
+        return $this->render('login_admin.html.twig');
+    }
+
+
 }

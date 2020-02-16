@@ -59,3 +59,36 @@ precommande:
 bike_admin_homepage:
     path:     /admin
     defaults: { _controller: BikeBundle:Default:indexAdmin }
+
+admin_login:
+    path:     /login_admin
+    defaults: { _controller: BikeBundle:Default:loginAdmin }
+
+Commande_list:
+    path:     /admin/commande/list
+    defaults: { _controller: "BikeBundle:Commande:list" }
+    methods:  GET
+
+Commande_details:
+    path:     /admin/commande/{id}/details
+    defaults: { _controller: "BikeBundle:Commande:details" }
+    methods:  GET
+
+Commande_edit:
+    path:     /admin/commande/{id}/edit
+    defaults: { _controller: "BikeBundle:Commande:edit" }
+    methods:  [GET, POST]
+
+Commande_delete:
+    path:     /admin/commande/{id}/delete
+    defaults: { _controller: "BikeBundle:Commande:delete" }
+
+Commande_confirme:
+    path:     /admin/commande/{id}/confirmer
+    defaults: { _controller: "BikeBundle:Commande:confirmerCommande" }
+
+Commande_pdf:
+    path:     /admin/commande/{id}/pdf
+    defaults: { _controller: "BikeBundle:Commande:pdf" }
+
+

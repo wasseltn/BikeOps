@@ -46,7 +46,7 @@ class PanierController extends Controller
         }
 
         # pass selected products to the twig page to show them
-        return $this->render('cart/show.html.twig');
+        return $this->render('panier/mycart.html.twig');
     }
 
     public function addAction(Request $request)

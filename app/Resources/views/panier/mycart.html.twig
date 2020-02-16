@@ -1,5 +1,7 @@
 {% extends 'front_base.html.twig' %}
 {% block body %}
+
+{% if line_items is defined and panier_data is defined %}
 <div class="container">
 
 
@@ -21,6 +23,7 @@
 
         <!--Table body-->
         <tbody>
+
         {% for item in line_items %}
         <tr class="cart_item">
             <td class="product-remove">
@@ -48,6 +51,7 @@
             </td>
         </tr>
         {% endfor %}
+
 
         <tr>
             <td class="actions" colspan="6">
@@ -97,5 +101,11 @@
     </div>
 </div>
 </div>
+{% else %}
+    <div class="container">
+        <h1 class="page-title">Your Cart is empty !</h1>
+    </div>
+
+{% endif %}
     <br>
 {% endblock %}

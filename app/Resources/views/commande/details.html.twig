@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Détails Commande:  {{ commande.getid() }} </h3>
+
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0" style="height: 300px;">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>ID Commande</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            <th>Addresse</th>
+                            <th>Date</th>
+                            <th>type Paiement</th>
+                            <th>type Livraison</th>
+                            <th>Liste des produits</th>
+                            <th>Prix total</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                            <tr>
+                                <td>{{ commande.getid() }}</td>
+                                <td>{{ commande.utilisateur.getNom() }} {{ commande.utilisateur.getPrenom() }} </td>
+                                <td>
+                                    {% if commande.getetat() == 'en_attente' %}
+                                    <span class="badge bg-danger">{{ commande.getetat()}}</span>
+                                    {% else %}
+                                        <span class="badge bg-success">{{ commande.getetat()}}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ commande.utilisateur.getAddresse() }}</td>
+                                <td>{{ commande.date|date('D/M/Y') }}</td>
+                                <td>{{ commande.gettypePaiment() }}  </td>
+                                <td></td>
+                                <td>
+                                 {% for commandeP in commandeProduits %}
+                                    {{ commandeP.produit.getname() }}
+                                    {% endfor %}
+
+                                </td>
+                                <td>
+                                {{ total }}
+                                <td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <a href='{{ path('Commande_pdf',{id:commande.getId()})  }}'class="btn btn-danger"> Generate PDF File</a>
+            <!-- /.card -->
+        </div>
+    </div>
+
+{% endblock %}

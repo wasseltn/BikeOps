@@ -1,24 +1,6 @@
-Commande_index:
-    path:     /
-    defaults: { _controller: "BikeBundle:Commande:index" }
-    methods:  GET
-
-Commande_show:
-    path:     /{id}/show
-    defaults: { _controller: "BikeBundle:Commande:show" }
-    methods:  GET
 
 Commande_new:
     path:     /new/{panier}
     defaults: { _controller: "BikeBundle:Commande:new" }
     methods:  [GET, POST]
 
-Commande_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "BikeBundle:Commande:edit" }
-    methods:  [GET, POST]
-
-Commande_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "BikeBundle:Commande:delete" }
-    methods:  DELETE
