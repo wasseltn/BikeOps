@@ -9,6 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAdminAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin_home.html.twig');
     }
 

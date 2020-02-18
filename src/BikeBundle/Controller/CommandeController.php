@@ -131,7 +131,7 @@ class CommandeController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        /* @var Commande $commandeObj*/
+        /* @var Commande $commandeObj */
         $commandeObj = $em->getRepository(commande::class)->find($id);
 
         $commandeObj->setEtat('confirmée');
@@ -141,25 +141,25 @@ class CommandeController extends Controller
         return $this->redirectToRoute('Commande_list');
 
     }
+
     public function detailsAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        /* @var Commande $commande*/
+        /* @var Commande $commande */
         $commande = $em->getRepository(commande::class)->find($id);
 
         $commandeProduits = $em->getRepository(CommandeProduit::class)->findBy(['commande' => $id]);
 
-        $total= 0;
-        /* @var CommandeProduit $cp*/
-        foreach ($commandeProduits as $cp)
-        {
+        $total = 0;
+        /* @var CommandeProduit $cp */
+        foreach ($commandeProduits as $cp) {
             $total += $cp->getProduit()->getPrix() * $cp->getQuantite();
         }
         return $this->render('commande/details.html.twig',
             array(
-            'commande'=>$commande,
-            'commandeProduits'=>$commandeProduits,
-            'total'=>$total));
+                'commande' => $commande,
+                'commandeProduits' => $commandeProduits,
+                'total' => $total));
 
     }
 
@@ -167,22 +167,21 @@ class CommandeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        /* @var Commande $commande*/
+        /* @var Commande $commande */
         $commande = $em->getRepository(commande::class)->find($id);
 
         $commandeProduits = $em->getRepository(CommandeProduit::class)->findBy(['commande' => $id]);
 
-        $total= 0;
-        /* @var CommandeProduit $cp*/
-        foreach ($commandeProduits as $cp)
-        {
+        $total = 0;
+        /* @var CommandeProduit $cp */
+        foreach ($commandeProduits as $cp) {
             $total += $cp->getProduit()->getPrix() * $cp->getQuantite();
         }
-        $html = $this->render('commande/details.html.twig',
+        $html = $this->render('commande/toPdf.html.twig',
             array(
-                'commande'=>$commande,
-                'commandeProduits'=>$commandeProduits,
-                'total'=>$total));
+                'commande' => $commande,
+                'commandeProduits' => $commandeProduits,
+                'total' => $total));
 
         return new PdfResponse(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
@@ -190,4 +189,21 @@ class CommandeController extends Controller
         );
     }
 
+
+    public function searchAction(Request $request)
+    {
+        $data = $request->get('keyword');
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('
+        SELECT c, u FROM BikeBundle:Commande c 
+        JOIN c.utilisateur u
+        WHERE u.username =:item')
+            ->setParameter('item',  $data);
+
+        $commandes = $query->getResult();
+
+        return $this->render('commande/list.html.twig', array('commandes' => $commandes));
+
+
+    }
 }

@@ -154,7 +154,11 @@
                     <img src="{{ asset('Admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <a href="#" class="d-block">{{app.user.nom}}</a>
+                    {% else %}
+                    <a href="#" class="d-block">User</a>
+                    {% endif %}
                 </div>
             </div>
 

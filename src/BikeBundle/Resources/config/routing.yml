@@ -91,4 +91,7 @@ Commande_pdf:
     path:     /admin/commande/{id}/pdf
     defaults: { _controller: "BikeBundle:Commande:pdf" }
 
+Commande_search:
+    path:     /admin/commande/search
+    defaults: { _controller: "BikeBundle:Commande:search" }
 
