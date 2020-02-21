@@ -5,6 +5,7 @@ namespace BikeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ProduitType extends AbstractType
 {
@@ -13,7 +14,8 @@ class ProduitType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('stock')->add('prix')->add('categorie');
+        $builder->add('name')->add('description')->add('stock')->add('prix')
+            ->add('categorie');
     }/**
      * {@inheritdoc}
      */

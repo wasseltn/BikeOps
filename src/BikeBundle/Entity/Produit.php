@@ -1,14 +1,16 @@
 <?php
 
 namespace BikeBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * Produit
  *
  * @ORM\Table(name="produit")
  * @ORM\Entity(repositoryClass="BikeBundle\Repository\ProduitRepository")
+
  */
 class Produit
 {
@@ -23,14 +25,18 @@ class Produit
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min="1",max="10")
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
+     * @Assert\NotBlank(
      *
+     * )
+     * @Assert\Length(min="1",max="20")
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
@@ -55,6 +61,8 @@ class Produit
      */
     private $categorie;
 
+
+
     /**
      * @return mixed
      */
@@ -70,6 +78,9 @@ class Produit
     {
         $this->categorie = $categorie;
     }
+
+
+
 
 
     /**
@@ -177,5 +188,7 @@ class Produit
     {
         return $this->prix;
     }
+
+
 }
 

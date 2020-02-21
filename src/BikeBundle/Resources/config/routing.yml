@@ -28,9 +28,21 @@ bike_evenement:
 
 bike_reclamation:
     resource: "@BikeBundle/Resources/config/routing/reclamation.yml"
-    prefix:   /reclamation
+    prefix:   /
+
+bike_categorie:
+    resource: "@BikeBundle/Resources/config/routing/categorie.yml"
+    prefix:   /categorie
+
+bike_produit:
+    resource: "@BikeBundle/Resources/config/routing/produit.yml"
+    prefix:   /produit
+
+
 
 # Back Office Routing
 bike_admin_homepage:
     path:     /admin
     defaults: { _controller: BikeBundle:Default:indexAdmin }
+
+
