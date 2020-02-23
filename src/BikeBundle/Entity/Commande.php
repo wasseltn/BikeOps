@@ -54,6 +54,28 @@ class Commande
      */
     private $panier;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Livraison")
+     * @ORM\JoinColumn(name="livraison_id", referencedColumnName="id")
+     */
+    private $livraison;
+
+    /**
+     * @return mixed
+     */
+    public function getLivraison()
+    {
+        return $this->livraison;
+    }
+
+    /**
+     * @param mixed $livraison
+     */
+    public function setLivraison($livraison)
+    {
+        $this->livraison = $livraison;
+    }
+
 
     /**
      * Get id

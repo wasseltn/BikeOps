@@ -5,8 +5,9 @@
 
         <h1 class="page-title">Pré-Commande</h1>
 
-        <div class="row">
-            <form action='{{ path('Commande_new', {'panier': panier_data}) }}'>
+
+        <form action='{{ path('Commande_new', {'panier': panier_data}) }}'>
+            <div class="row">
             <div class="col-md-6 col-sm-6">
                 <!--Cart totals-->
                 <div class="cart_totals">
@@ -36,14 +37,14 @@
                     <div class="cart_totals_inner">
                         <h2>Type de Livraison</h2>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="paiement" id="carte" value="carte" checked>
-                            <label class="form-check-label" for="carte">
+                            <input class="form-check-input" type="radio" name="livraison"  value="retrait_magasin" checked>
+                            <label class="form-check-label" >
                                Retrait Magasin
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="paiement" id="livraison" value="livraison">
-                            <label class="form-check-label" for="livraison">
+                            <input class="form-check-input" type="radio" name="livraison" value="livraison_domicile">
+                            <label class="form-check-label" >
                                Livraison Domicile
                             </label>
                         </div>
@@ -53,11 +54,12 @@
                 </div>
                 <!--End cart totals-->
 
+                </div>
+            </div> <br>
+            <div style="margin-left: 10px" class="row">
+                <button type="submit" class="btn btn-primary">Confirmer Commande</button>
             </div>
-
-                <button type="submit" class="add-to-cart">Confirmer Commande</button>
-            </form>
-        </div>
+        </form>
     </div>
     <br>
 {% endblock %}

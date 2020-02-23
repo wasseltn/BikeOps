@@ -101,6 +101,7 @@ class PanierController extends Controller
                 $lineItem->setProduit($product);
                 $lineItem->setPanier($panier);
 
+                // $product->setStock($product->getStock() - 1);
                 # persist it and flush doctrine to save it
                 $em->persist($lineItem);
                 $em->flush();
@@ -114,7 +115,7 @@ class PanierController extends Controller
 
                 # set initail total price for cart which equal to product price
                 $panier->setTotal($panier->getTotal() + $product->getPrix());
-
+                // $product->setStock($product->getStock() - 1);
                 # persist all cart data to can use it in create shipping object
                 $em->persist($panier);
                 # flush it
