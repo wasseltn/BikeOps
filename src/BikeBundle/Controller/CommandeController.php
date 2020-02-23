@@ -36,9 +36,10 @@ class CommandeController extends Controller
     public function precommandeAction($panier)
     {
         $em = $this->getDoctrine()->getManager();
+        $panierObj = $em->getRepository(Panier::class)->find($panier);
 
-
-        return $this->render('commande/precommande.html.twig', array('panier_data' => $panier));
+        return $this->render('commande/precommande.html.twig', array('panier_data' => $panier,
+            'panierObj' => $panierObj));
     }
 
     /* Add Commande */

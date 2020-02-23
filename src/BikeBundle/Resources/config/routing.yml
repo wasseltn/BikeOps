@@ -99,3 +99,19 @@ Commande_search:
     path:     /admin/commande/search
     defaults: { _controller: "BikeBundle:Commande:search" }
 
+coupon_list:
+    path:     /admin/coupon/list
+    defaults: { _controller: "BikeBundle:Coupon:show" }
+    methods:  GET
+
+coupon_add:
+    path:     /admin/coupon/add
+    defaults: { _controller: "BikeBundle:Coupon:add" }
+
+coupon_delete:
+    path:     /admin/coupon/delete/{id}
+    defaults: { _controller: "BikeBundle:Coupon:delete" }
+
+apply_coupon:
+    path:     /admin/coupon/apply/{panier}
+    defaults: { _controller: "BikeBundle:Coupon:apply" }

@@ -12,11 +12,11 @@
         <thead>
         <tr>
             <th class="product-remove">&nbsp;</th>
-            <th class="product-thumbnail">Product</th>
+            <th class="product-thumbnail">Produit</th>
             <th class="product-name">&nbsp;</th>
-            <th class="product-price">Price</th>
-            <th class="product-quantity">Quantity</th>
-            <th class="product-subtotal">Total</th>
+            <th class="product-price">Prix Unitaire</th>
+            <th class="product-quantity">Quantité</th>
+            <th class="product-subtotal">Sous-Total</th>
         </tr>
         </thead>
         <!--End table header-->
@@ -72,9 +72,9 @@
         <!--Coupon-->
         <div class="coupon">
             <h3>Coupon</h3>
-            <form>
+            <form action='{{ path('apply_coupon', {'panier': panier_data.getId()}) }}'>
                 <p>Enter your coupon code if you have one.</p>
-                <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code">
+                <input type="text" name="coupon_code" class="input-text" placeholder="Coupon code">
                 <input type="submit" class="button" name="apply_coupon" value="Apply Coupon">
             </form>
         </div>
@@ -87,8 +87,14 @@
             <div class="cart_totals_inner">
                 <table>
                     <tbody>
+                    {% if pourcentage is defined %}
                     <tr class="order-total">
-                        <th>Order total</th>
+                        <th>Votre Code est bien appliqué !</th>
+                        <td><span class="amount"> - {{pourcentage}}% !</span></td>
+                    </tr>
+                        {% endif %}
+                    <tr class="order-total">
+                        <th>Total à Payer</th>
                         <td><span class="amount">{{panier_data.total}}</span></td>
                     </tr>
                     </tbody>

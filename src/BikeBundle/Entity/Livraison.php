@@ -72,7 +72,7 @@ class Livraison
 
     /**
      * @ORM\ManyToOne(targetEntity="Livreur")
-     * @ORM\JoinColumn(name="livreurId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="livreurId", referencedColumnName="id",  nullable=true)
      */
     private $livreurId;
 
