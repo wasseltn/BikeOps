@@ -160,7 +160,11 @@
                     <img src="{{ asset('Admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <a href="#" class="d-block">{{app.user.nom}}</a>
+                    {% else %}
+                    <a href="#" class="d-block">User</a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -246,7 +250,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ path('Commande_list') }}" class="nav-link">
                             <i class="nav-icon fas fa-tags"></i>
                             <p>
                                 Commandes
@@ -278,7 +282,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard v2</h1>
+                        <h1 class="m-0 text-dark">BikeOps Dashboard</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
