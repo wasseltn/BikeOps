@@ -3,6 +3,7 @@
 namespace BikeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Livraison
@@ -32,8 +33,42 @@ class Livraison
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min="3")
      */
     private $adresse;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min="3")
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
+     * @ORM\JoinColumn(name="commande_id",referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Commande")
+     */
+    private $commande_id;
+
+    /**
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param string $ville
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="Livreur")
@@ -132,20 +167,21 @@ class Livraison
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCommande()
+    public function getCommandeId()
     {
-        return $this->commande;
+        return $this->commande_id;
     }
 
     /**
-     * @param mixed $commande
+     * @param string $commande_id
      */
-    public function setCommande($commande)
+    public function setCommandeId($commande_id)
     {
-        $this->commande = $commande;
+        $this->commande_id = $commande_id;
     }
+
 
 
 }

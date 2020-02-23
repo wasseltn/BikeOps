@@ -20,7 +20,7 @@
                                     <thead>
                                     <tr>
                                         <th data-field="id" data-editable="false">id</th>
-                                        <th data-field="etat">Etat</th>
+                                        <th data-field="name">Etat</th>
                                         <th data-field="adresse" data-editable="false">Adresse</th>
                                         <th data-field="ville">Ville</th>
                                         <th data-field="livreur">Livreur</th>
@@ -56,18 +56,16 @@
             </div>
         </div>
     </div>
-    <a href="{{ path('livraison_new') }}"><button type="button" class="btn btn-primary">New !!</button></a>
-    <a href="{{ path('livraison_map') }}"><button type="button" class="btn btn-primary">Map</button></a>
-    <a href="{{ path('livraison_imp') }}"><button type="button" class="btn btn-primary">PDF</button></a>
+
 {% endblock %}
 
 {% block JS %}
-    <script src="{{ asset('data-table/bootstrap-table.js')}}"></script>
-    <script src="{{ asset('data-table/tableExport.js')}}"></script>
-    <script src="{{ asset('data-table/data-table-active.js')}}"></script>
-    <script src="{{ asset('data-table/bootstrap-table-editable.js')}}"></script>
-    <script src="{{ asset('data-table/bootstrap-editable.js')}}"></script>
-    <script src="{{ asset('data-table/bootstrap-table-resizable.js')}}"></script>
-    <script src="{{ asset('data-table/colResizable-1.5.source.js')}}"></script>
-    <script src="{{ asset('data-table/bootstrap-table-export.js')}}"></script>
+<script src="{{ asset('data-table/bootstrap-table.js')}}"></script>
+<script src="{{ asset('data-table/tableExport.js')}}"></script>
+<script src="{{ asset('data-table/data-table-active.js')}}"></script>
+<script src="{{ asset('data-table/bootstrap-table-editable.js')}}"></script>
+<script src="{{ asset('data-table/bootstrap-editable.js')}}"></script>
+<script src="{{ asset('data-table/bootstrap-table-resizable.js')}}"></script>
+<script src="{{ asset('data-table/colResizable-1.5.source.js')}}"></script>
+<script src="{{ asset('data-table/bootstrap-table-export.js')}}"></script>
 {% endblock %}

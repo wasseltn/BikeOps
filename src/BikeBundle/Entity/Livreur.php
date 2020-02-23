@@ -3,6 +3,7 @@
 namespace BikeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Livreur
@@ -25,6 +26,8 @@ class Livreur
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min="3")
      */
     private $nom;
 
@@ -32,6 +35,8 @@ class Livreur
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min="3")
      */
     private $prenom;
 
