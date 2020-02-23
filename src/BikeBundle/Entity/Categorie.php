@@ -1,7 +1,7 @@
 <?php
 
 namespace BikeBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +23,7 @@ class Categorie
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
@@ -30,6 +31,8 @@ class Categorie
 
     /**
      * @var string
+     * @Assert\Length(min="1",max="30")
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="description", type="string", length=255)
      */
@@ -92,6 +95,11 @@ class Categorie
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function __toString()
+    {
+       return $this->getName();
     }
 }
 

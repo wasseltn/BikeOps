@@ -7,6 +7,9 @@
 
     <title>Home</title>
 
+    {% block stylee %}{% endblock %}
+
+
     <link href={{asset('css/bootstrap.min.css')}} rel="stylesheet" type="text/css">
     <link href={{asset('fonts/font-awesome/css/font-awesome.min.css')}} rel="stylesheet" type="text/css">
     <link href={{asset('http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic')}} rel='stylesheet' type='text/css'>
@@ -16,6 +19,7 @@
     <link href={{asset('css/owl.theme.css')}} rel='stylesheet' type='text/css'>
     <link href={{asset('rs-plugin/css/settings.css')}} rel="stylesheet" type='text/css'>
     <link href={{asset('css/custom.css')}} rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href={{ asset('Admin/plugins/fontawesome-free/css/all.min.css') }}>
 
     <!--[if lt IE 9]>
     <script src="{{asset('js/html5shiv.min.js')}}"></script>
@@ -175,31 +179,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="shop.html">Bikes</a>
+                        <a href="{{ path('produit_front') }}">Bikes</a>
                     </li>
                     <li>
                         <a href="shop.html">Gear</a>
                     </li>
-                    <li>
-                        <a href="shop.html">Shop</a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="shop-rightsidebar.html">Shop Right</a>
-                            </li>
-                            <li>
-                                <a href="shop-cart.html">Shop Cart</a>
-                            </li>
-                            <li>
-                                <a href="shop-checkout.html">Shop Checkout</a>
-                            </li>
-                            <li>
-                                <a href="shop-register.html">Shop Register</a>
-                            </li>
-                            <li>
-                                <a href="single-product.html">Shop Single</a>
-                            </li>
-                        </ul>
-                    </li>
+
                     <li>
                         <a href="blog.html">
                             Blog
@@ -231,10 +216,12 @@
 
     </header>
     <!--End id tz header-->
+<div class="container">
 
     {% block body %}
 
 {% endblock %}
+</div>
     <!--Start Footer-->
     <footer class="tz-footer">
         <div class="footer-widget">

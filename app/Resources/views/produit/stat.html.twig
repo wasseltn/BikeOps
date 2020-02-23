@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<canvas id="myChart" ></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    data = {
+        datasets: [{
+            data: [{{ l }}, {{ l1 }}, {{ l2 }}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+
+            ],
+        }],
+
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: [
+            'Vélos',
+            'Accessoires',
+            'Pièces de rechange'
+        ]
+    };
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+
+    });
+</script>
+
+{% endblock %}

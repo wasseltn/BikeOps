@@ -1,9 +1,9 @@
-{% extends 'front_base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
     <h1>Categorie creation</h1>
-
-    {{ form_start(form) }}
+    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
