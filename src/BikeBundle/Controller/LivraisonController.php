@@ -3,8 +3,10 @@
 namespace BikeBundle\Controller;
 
 use BikeBundle\Entity\Livraison;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Livraison controller.
@@ -26,6 +28,46 @@ class LivraisonController extends Controller
             'livraisons' => $livraisons,
         ));
     }
+    /**
+     * page pdf
+     *
+     */
+    public function pdfAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $livraisons = $em->getRepository('BikeBundle:Livraison')->findAll();
+
+        return $this->render('livraison/pdf.html.twig', array(
+            'livraisons' => $livraisons,
+        ));
+    }
+    public function impAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $l = $em->getRepository('BikeBundle:Livraison')->findAll();
+
+        $pageUrl = $this->generateUrl('livraison_pdf', array('livraisons'=>$l), UrlGeneratorInterface::ABSOLUTE_URL);
+        return new PdfResponse(
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            'livraisons.pdf'
+        );
+
+    }
+
+
+
+
+    public function mapAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+       // $livraisons = $em->getRepository('BikeBundle:Livraison')->findAll();
+
+        return $this->render('livraison/map.html.twig');
+    }
+
 
     /**
      * Creates a new livraison entity.
@@ -121,4 +163,18 @@ class LivraisonController extends Controller
             ->getForm()
         ;
     }
+
+
+    /**
+     * Finds and displays a livraison entity.
+     *
+     */
+    public function villeAction($ville)
+    {
+        $v=$this->getDoctrine()->getRepository(Livraison::class)->findBy(array('ville'=>$ville));
+        return $this->render('livraison/showliv.html.twig', array(
+            'livraisons' => $v
+        ));
+    }
+
 }

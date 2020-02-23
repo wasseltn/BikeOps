@@ -8,6 +8,10 @@ livraison_show:
     defaults: { _controller: "BikeBundle:Livraison:show" }
     methods:  GET
 
+livraison_map:
+    path:     /map
+    defaults: { _controller: "BikeBundle:Livraison:map" }
+
 livraison_new:
     path:     /new
     defaults: { _controller: "BikeBundle:Livraison:new" }
@@ -22,3 +26,19 @@ livraison_delete:
     path:     /{id}/delete
     defaults: { _controller: "BikeBundle:Livraison:delete" }
     methods:  DELETE
+
+
+
+livraison_ville:
+    path:     /map/{ville}
+    defaults: { _controller: "BikeBundle:Livraison:ville" }
+
+
+
+livraison_pdf:
+    path:     /pdf
+    defaults: { _controller: "BikeBundle:Livraison:pdf" }
+
+livraison_imp:
+    path:     /imp
+    defaults: { _controller: "BikeBundle:Livraison:imp" }

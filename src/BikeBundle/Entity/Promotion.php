@@ -3,6 +3,7 @@
 namespace BikeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Promotion
@@ -32,6 +33,7 @@ class Promotion
      * @var \DateTime
      *
      * @ORM\Column(name="dateFin", type="date")
+     * @Assert\NotBlank
      */
     private $dateFin;
 
@@ -39,6 +41,8 @@ class Promotion
      * @var float
      *
      * @ORM\Column(name="PourcentageReducation", type="float")
+     * @Assert\NotBlank
+     * @Assert\Range(min="1",max="100")
      */
     private $pourcentageReducation;
 
