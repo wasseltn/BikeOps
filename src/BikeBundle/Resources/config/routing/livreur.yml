@@ -1,0 +1,24 @@
+livreur_index:
+    path:     /
+    defaults: { _controller: "BikeBundle:Livreur:index" }
+    methods:  GET
+
+livreur_show:
+    path:     /{id}/show
+    defaults: { _controller: "BikeBundle:Livreur:show" }
+    methods:  GET
+
+livreur_new:
+    path:     /new
+    defaults: { _controller: "BikeBundle:Livreur:new" }
+    methods:  [GET, POST]
+
+livreur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BikeBundle:Livreur:edit" }
+    methods:  [GET, POST]
+
+livreur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BikeBundle:Livreur:delete" }
+    methods:  DELETE

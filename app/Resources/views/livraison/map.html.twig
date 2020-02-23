@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block map %}
+<link href="../dist/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="{{ asset('map/jquery.vmap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('map/jquery.vmap.tunisia.js    ') }}" charset="utf-8"></script>
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#vmap').vectorMap({
+            map: 'tunisia',
+            onRegionClick: function (element, code, region) {
+                var message = 'You clicked "'
+                    + region
+                    + '" which has the code: '
+                    + code.toUpperCase();
+                var url = '{{ path('livraison_ville', { 'ville': 'region' }) }}';
+                url = url.replace("region", region);
+                window.open(url);
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+{% block body %}
+<div id="vmap" style="width: 700px; height: 637px;"></div>
+{% endblock %}
+
