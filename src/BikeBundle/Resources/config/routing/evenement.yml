@@ -22,3 +22,17 @@ evenement_delete:
     path:     /{id}/delete
     defaults: { _controller: "BikeBundle:Evenement:delete" }
     methods:  DELETE
+
+evenement_calendrier:
+    path:     /calendrier
+    defaults: { _controller: "BikeBundle:Evenement:calendrier" }
+    methods:  GET
+
+evenement_indexf:
+    path:     /F
+    defaults: { _controller: "BikeBundle:Evenement:indexf" }
+
+evenement_mail:
+    path:     /mail/{event}
+    defaults: { _controller: "BikeBundle:Evenement:mail" }
+

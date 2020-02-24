@@ -1,56 +1,41 @@
 {% extends 'front_base.html.twig' %}
 
 {% block body %}
-    <h1>Evenement</h1>
+    <h1>Evenements list</h1>
 
     <table class="table">
-        <tbody>
+        <thead>
         <tr>
             <th>Id</th>
-            <td>{{ evenement.id }}</td>
-        </tr>
-        <tr>
             <th>Lieu</th>
-            <td>{{ evenement.lieu }}</td>
-        </tr>
-        <tr>
             <th>Datedebut</th>
-            <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d') }}{% endif %}</td>
-        </tr>
-        <tr>
             <th>Datefin</th>
-            <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d') }}{% endif %}</td>
-        </tr>
-        <tr>
             <th>Nbplace</th>
-            <td>{{ evenement.nbPlace }}</td>
-        </tr>
-        <tr>
             <th>Prix</th>
-            <td>{{ evenement.prix }}</td>
-        </tr>
-        <tr>
             <th>Description</th>
-            <td>{{ evenement.description }}</td>
+            <th>Nom</th>
+            <th>Formateur</th>
         </tr>
-        <tr>
-            <th>Name</th>
-            <td>{{ evenement.name }}</td>
-        </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
+                <td>{{ evenement.lieu }}</td>
+                <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ evenement.nbPlace }}</td>
+                <td>{{ evenement.prix }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{{ evenement.name }}</td>
+                <td>{{ evenement.formateur.nom }}</td>
+                <td><a href="{{ path('evenement_mail',{'event':evenement.name}) }}"><button type="button" class="btn btn-info" >Reserver</button></a></td>
+                <td>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('evenement_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}

@@ -55,6 +55,9 @@ precommande:
     resource: "@BikeBundle/Resources/config/routing/precommande.yml"
     prefix:     /precommande
 
+bike_formateur:
+    resource: "@BikeBundle/Resources/config/routing/formateur.yml"
+    prefix:   /formateur
 # Back Office Routing
 bike_admin_homepage:
     path:     /admin

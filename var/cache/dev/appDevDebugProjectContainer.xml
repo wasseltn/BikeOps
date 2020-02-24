@@ -19,6 +19,7 @@
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="BikeBundle">BikeBundle\BikeBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
+      <parameter key="NotificationsBundle">SBC\NotificationsBundle\NotificationsBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -76,6 +77,11 @@
         <parameter key="path">C:\wamp64\www\Bikeops\vendor\friendsofsymfony\user-bundle</parameter>
         <parameter key="namespace">FOS\UserBundle</parameter>
       </parameter>
+      <parameter key="NotificationsBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">C:\wamp64\www\Bikeops\vendor\mrad\notifications-bundle\SBC\NotificationsBundle</parameter>
+        <parameter key="namespace">SBC\NotificationsBundle</parameter>
+      </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">C:\wamp64\www\Bikeops\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle</parameter>
@@ -111,10 +117,10 @@
     <parameter key="database_name">bikeops</parameter>
     <parameter key="database_user">root</parameter>
     <parameter key="database_password">null</parameter>
-    <parameter key="mailer_transport">smtp</parameter>
+    <parameter key="mailer_transport">gmail</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
-    <parameter key="mailer_user">null</parameter>
-    <parameter key="mailer_password">null</parameter>
+    <parameter key="mailer_user">swiftmailer.test123456</parameter>
+    <parameter key="mailer_password">swiftmailer123</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
@@ -219,15 +225,21 @@
     <parameter key="swiftmailer.email_sender.listener.class">Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</parameter>
     <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">ssl</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">465</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">smtp.gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.username">swiftmailer.test123456</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.password">swiftmailer123</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">login</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.local_domain">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.stream_options" type="collection">
+      <parameter key="ssl" type="collection">
+        <parameter key="allow_self_signed">true</parameter>
+        <parameter key="verify_peer">false</parameter>
+      </parameter>
+    </parameter>
     <parameter key="swiftmailer.spool.default.memory.path">C:\wamp64\www\Bikeops\var\cache\dev/swiftmailer/spool/default</parameter>
     <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
@@ -390,6 +402,13 @@
     <parameter key="fos_user.resetting.form.validation_groups" type="collection">
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
+    </parameter>
+    <parameter key="notifications" type="collection">
+      <parameter key="app_id">950153</parameter>
+      <parameter key="app_key">ecd17581c123187d2fc2</parameter>
+      <parameter key="app_secret">652d52ff4ee2664c68ab</parameter>
+      <parameter key="cluster">eu</parameter>
+      <parameter key="encrypted">false</parameter>
     </parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -3005,6 +3024,9 @@
         <argument type="service" id="doctrine.twig.doctrine_extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="notifications.assets.extension"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
       <call method="addGlobal">
@@ -3095,14 +3117,6 @@
       <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\doctrine\doctrine-bundle/Resources/views</argument>
         <argument>!Doctrine</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
-        <argument>Bike</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
-        <argument>!Bike</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
@@ -3284,14 +3298,6 @@
         <argument>!Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
-        <argument>Bike</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\wamp64\www\Bikeops\src\BikeBundle/Resources/views</argument>
-        <argument>!Bike</argument>
-      </call>
-      <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
         <argument>FOSUser</argument>
       </call>
@@ -3459,13 +3465,13 @@
         <argument type="service" id="3_Swift_Transport_Esmtp_Auth_PlainAuthenticator~sfwgcfu"/>
       </argument>
       <call method="setUsername">
-        <argument>null</argument>
+        <argument>swiftmailer.test123456</argument>
       </call>
       <call method="setPassword">
-        <argument>null</argument>
+        <argument>swiftmailer123</argument>
       </call>
       <call method="setAuthMode">
-        <argument>null</argument>
+        <argument>login</argument>
       </call>
     </service>
     <service id="swiftmailer.mailer.default.transport.buffer" class="Swift_Transport_StreamBuffer" public="false">
@@ -3482,19 +3488,22 @@
       </argument>
       <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
       <call method="setHost">
-        <argument>127.0.0.1</argument>
+        <argument>smtp.gmail.com</argument>
       </call>
       <call method="setPort">
-        <argument>25</argument>
+        <argument>465</argument>
       </call>
       <call method="setEncryption">
-        <argument>null</argument>
+        <argument>ssl</argument>
       </call>
       <call method="setTimeout">
         <argument>30</argument>
       </call>
       <call method="setSourceIp">
         <argument>null</argument>
+      </call>
+      <call method="setStreamOptions">
+        <argument>%swiftmailer.mailer.default.transport.smtp.stream_options%</argument>
       </call>
       <configurator service="swiftmailer.transport.configurator.default" method="configure"/>
     </service>
@@ -3626,6 +3635,9 @@
       <argument type="service" id="service_container"/>
       <call method="addEventSubscriber">
         <argument type="service" id="fos_user.user_listener"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="history.service"/>
       </call>
       <call method="addEventListener">
         <argument type="collection">
@@ -4194,6 +4206,17 @@
       <call method="setContainer">
         <argument type="service" id="service_container"/>
       </call>
+    </service>
+    <service id="history.service" class="SBC\NotificationsBundle\EventListener\HistoryService">
+      <tag name="doctrine.event_subscriber" connection="default"/>
+      <argument type="service" id="service_container"/>
+    </service>
+    <service id="mrad.pusher.notificaitons" class="SBC\NotificationsBundle\Service\PusherService">
+      <argument type="service" id="service_container"/>
+    </service>
+    <service id="notifications.assets.extension" class="SBC\NotificationsBundle\Twig\NotificationsAssetsExtension" public="true">
+      <tag name="twig.extension"/>
+      <argument type="service" id="service_container"/>
     </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>

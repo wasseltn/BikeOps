@@ -2,6 +2,7 @@
 
 namespace BikeBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,8 @@ class EvenementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lieu')->add('dateDebut')->add('dateFin')->add('nbPlace')->add('prix')->add('description')->add('name')->add('utilisateur');
+        $builder->add('lieu')->add('dateDebut')->add('dateFin')->add('nbPlace')->add('prix')->add('description')->add('name')
+            ->add('Formateur',EntityType::class,array('class'=>'BikeBundle:Formateur','choice_label'=>'nom'));
     }/**
      * {@inheritdoc}
      */

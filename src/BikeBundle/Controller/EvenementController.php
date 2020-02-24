@@ -3,8 +3,10 @@
 namespace BikeBundle\Controller;
 
 use BikeBundle\Entity\Evenement;
+use BikeBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Evenement controller.
@@ -21,9 +23,61 @@ class EvenementController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $evenements = $em->getRepository('BikeBundle:Evenement')->findAll();
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('evenement/index.html.twig', array(
             'evenements' => $evenements,
+            'notifications' => $notif
+        ));
+    }
+    /**
+     * Lists all evenement entities.
+     *
+     */
+    public function indexfAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $evenements = $em->getRepository('BikeBundle:Evenement')->findAll();
+
+        return $this->render('evenement/showF.html.twig', array(
+            'evenements' => $evenements,
+        ));
+    }
+
+    public function mailAction($event){
+        $dest= array();
+        $userManager = $this->get('fos_user.user_manager');
+        $users=$userManager->findUsers();
+        $from = $this->getUser();
+        foreach ($users as $user)
+        array_push($dest,$user->getEmail());
+        $message = (new \Swift_Message('BIKEOPS'))
+            ->setFrom('swiftmailer.test123456@gmail.com')
+            ->setTo($dest)
+            ->setDescription('Reservation BIKEOPS 5')
+            ->setBody('Une reservation effectuée de l\'evenement '.$event.' Envoyé par : '.$from)
+
+
+        ;
+
+        $this->get('mailer')->send($message);
+
+        return $this->redirectToRoute('evenement_indexf');
+    }
+
+    /**
+     * Lists all evenement entities.
+     *
+     */
+    public function calendrierAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $evenements = $em->getRepository('BikeBundle:Evenement')->findAll();
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
+        return $this->render('evenement/calendrier.html.twig', array(
+            'evenements' => $evenements,
+            'notifications' => $notif
         ));
     }
 
@@ -44,10 +98,11 @@ class EvenementController extends Controller
 
             return $this->redirectToRoute('evenement_show', array('id' => $evenement->getId()));
         }
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('evenement/new.html.twig', array(
             'evenement' => $evenement,
             'form' => $form->createView(),
+            'notifications' => $notif
         ));
     }
 
@@ -58,10 +113,11 @@ class EvenementController extends Controller
     public function showAction(Evenement $evenement)
     {
         $deleteForm = $this->createDeleteForm($evenement);
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('evenement/show.html.twig', array(
             'evenement' => $evenement,
             'delete_form' => $deleteForm->createView(),
+            'notifications' => $notif
         ));
     }
 
@@ -80,11 +136,12 @@ class EvenementController extends Controller
 
             return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
         }
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('evenement/edit.html.twig', array(
             'evenement' => $evenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'notification' => $notif
         ));
     }
 

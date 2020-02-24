@@ -3,19 +3,30 @@ reclamation_index:
     defaults: { _controller: "BikeBundle:Reclamation:index" }
     methods:  GET
 
+reclamation_indexf:
+    path:     /f
+    defaults: { _controller: "BikeBundle:Reclamation:indexf" }
+    methods:  GET
+
 reclamation_show:
     path:     /{id}/show
     defaults: { _controller: "BikeBundle:Reclamation:show" }
     methods:  GET
 
-reclamation_new:
-    path:     /new
+
+reclamation_newf:
+    path:     /newf
     defaults: { _controller: "BikeBundle:Reclamation:new" }
     methods:  [GET, POST]
 
 reclamation_edit:
     path:     /{id}/edit
     defaults: { _controller: "BikeBundle:Reclamation:edit" }
+    methods:  [GET, POST]
+
+reclamation_editf:
+    path:     /{id}/editf
+    defaults: { _controller: "BikeBundle:Reclamation:editf" }
     methods:  [GET, POST]
 
 reclamation_delete:

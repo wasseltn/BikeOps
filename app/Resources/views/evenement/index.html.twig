@@ -2,7 +2,6 @@
 
 {% block body %}
     <h1>Evenements list</h1>
-
     <table class="table">
         <thead>
             <tr>
@@ -13,7 +12,8 @@
                 <th>Nbplace</th>
                 <th>Prix</th>
                 <th>Description</th>
-                <th>Name</th>
+                <th>Nom</th>
+                <th>Formateur</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -28,13 +28,14 @@
                 <td>{{ evenement.prix }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.name }}</td>
+                <td>{{ evenement.formateur.nom }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">show</a>
+                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}"><BUTTON CLASS="btn btn-info">show</BUTTON></a>
                         </li>
                         <li>
-                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">edit</a>
+                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><BUTTON CLASS="btn btn-danger">edit</BUTTON></a>
                         </li>
                     </ul>
                 </td>
@@ -45,7 +46,11 @@
 
     <ul>
         <li>
-            <a href="{{ path('evenement_new') }}">Create a new evenement</a>
+            <a href="{{ path('evenement_new') }}"><BUTTON CLASS="btn btn-warning">Create a new evenement</BUTTON></a>
+        </li>
+
+        <li>
+            <a href="{{ path('evenement_calendrier') }}"><BUTTON CLASS="btn btn-dark">Calendar</BUTTON></a>
         </li>
     </ul>
 {% endblock %}
