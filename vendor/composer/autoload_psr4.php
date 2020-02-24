@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Vich\\UploaderBundle\\' => array($vendorDir . '/vich/uploader-bundle'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Tests\\' => array($baseDir . '/tests'),
     'Symfony\\Polyfill\\Util\\' => array($vendorDir . '/symfony/polyfill-util'),
@@ -35,6 +36,7 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Knp\\Snappy\\' => array($vendorDir . '/knplabs/knp-snappy/src/Knp/Snappy'),
     'Knp\\Bundle\\SnappyBundle\\' => array($vendorDir . '/knplabs/knp-snappy-bundle'),
+    'Knp\\Bundle\\PaginatorBundle\\' => array($vendorDir . '/knplabs/knp-paginator-bundle'),
     'Incenteev\\ParameterHandler\\' => array($vendorDir . '/incenteev/composer-parameter-handler'),
     'Fig\\Link\\' => array($vendorDir . '/fig/link-util/src'),
     'FOS\\UserBundle\\' => array($vendorDir . '/friendsofsymfony/user-bundle'),
@@ -46,5 +48,6 @@ return array(
     'Doctrine\\Bundle\\DoctrineCacheBundle\\' => array($vendorDir . '/doctrine/doctrine-cache-bundle'),
     'Doctrine\\Bundle\\DoctrineBundle\\' => array($vendorDir . '/doctrine/doctrine-bundle'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
+    'Behat\\Transliterator\\' => array($vendorDir . '/behat/transliterator/src/Behat/Transliterator'),
     '' => array($baseDir . '/src'),
 );

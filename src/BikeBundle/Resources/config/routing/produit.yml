@@ -1,7 +1,16 @@
 produit_index:
-    path:     /
+    path:     /b
     defaults: { _controller: "BikeBundle:Produit:index" }
     methods:  GET
+
+produit_front:
+    path:     /
+    defaults: { _controller: "BikeBundle:Produit:front" }
+
+produit_stat:
+    path:     /stat
+    defaults: { _controller: "BikeBundle:Produit:stat" }
+
 
 produit_show:
     path:     /{id}/show

@@ -174,14 +174,16 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview menu-open">
+
                         <a href="{{ path('bike_admin_homepage') }}" class="nav-link active">
+
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
                             </p>
                         </a>
 
-                    </li>
+
                     <li class="nav-item">
                         <a href="pages/widgets.html" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
@@ -200,19 +202,40 @@
                         </a>
                         <ul class="nav nav-treeview" style="display: block;">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
-                                    <i class="  fas fa-bicycle"></i>
-                                    <p>Vélos</p>
+                                <a href="{{ path('produit_index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Liste de produits</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index2.html" class="nav-link ">
-                                    <i class="fas fa-asterisk"></i>
-                                    <p>Accessoires</p>
+                                <a href="{{ path('produit_stat') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Statistiques</p>
                                 </a>
                             </li>
+
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Catégories
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ path('categorie_index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Liste de catégories</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
                     <li class="nav-item">
                         <a href="{{ path('livraison_index') }}" class="nav-link">
                             <i class="nav-icon fas  fa-rocket"></i>
@@ -278,6 +301,7 @@
                     </li>
 
                 </ul>
+
             </nav>
             <!-- /.sidebar-menu -->
         </div>
@@ -291,12 +315,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
+
                         <h1 class="m-0 text-dark">BikeOps Dashboard</h1>
+
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v2</li>
+
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -353,9 +379,13 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="{{ asset('Admin/dist/js/pages/dashboard2.js') }}"></script>
+
+{% block scripts %}{% endblock %}
+
 {% block map %}
 {% endblock %}
 {% block JS %}
 {% endblock %}
+
 </body>
 </html>

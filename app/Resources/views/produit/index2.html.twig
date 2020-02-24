@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Produits list</h1>
+<div class="row justify-content-md-center">
+    <h3 class="box-title " style="margin-right: 10px;color:#0e84b5">Sort By </h3>
+<button class="btn btn-warning" style="margin-right: 10px;">
+    {{ knp_pagination_sortable(pagination, 'Name', 'p.name') }}
+</button>
+
+    <button class="btn btn-warning" style="margin-right: 10px;">
+    {{ knp_pagination_sortable(pagination, 'Description', 'p.description') }}
+    </button>
+</div>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>Name</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Prix</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produit in pagination %}
+            <tr>
+
+                <td>{{ produit.name }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.stock }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('produit_show', { 'id': produit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('produit_edit', { 'id': produit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="container">
+        <div class="row justify-content-md-center">
+
+            <div class="navigation">
+                <div class="container">
+                    <br>
+                    <h3 class="box-title " style="margin-right: 10px;color:#0e84b5">Filter By </h3>
+                    {{ knp_pagination_filter(pagination,{'p.name':'Name','p.description':'Description'}) }}
+                </div>
+                <br>
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('produit_new') }}">Create a new produit</a>
+        </li>
+    </ul>
+{% endblock %}

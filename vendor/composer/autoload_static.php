@@ -20,6 +20,10 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
     );
 
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Vich\\UploaderBundle\\' => 20,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -63,6 +67,7 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         array (
             'Knp\\Snappy\\' => 11,
             'Knp\\Bundle\\SnappyBundle\\' => 24,
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
         ),
         'I' => 
         array (
@@ -87,9 +92,17 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         array (
             'Composer\\CaBundle\\' => 18,
         ),
+        'B' => 
+        array (
+            'Behat\\Transliterator\\' => 21,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Vich\\UploaderBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vich/uploader-bundle',
+        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
@@ -206,6 +219,10 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
         ),
+        'Knp\\Bundle\\PaginatorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+        ),
         'Incenteev\\ParameterHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
@@ -250,6 +267,10 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
+        'Behat\\Transliterator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/behat/transliterator/src/Behat/Transliterator',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
@@ -262,6 +283,20 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
             'Twig_' => 
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'M' => 
+        array (
+            'Metadata\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/jms/metadata/src',
+            ),
+        ),
+        'K' => 
+        array (
+            'Knp\\Component' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-components/src',
             ),
         ),
         'D' => 

@@ -9,6 +9,4 @@ parameters:
     mailer_host: smtp.gmail.com
     mailer_user: bikeops15@gmail.com
     mailer_password: az123456+
-    mailer_encryption: tls
-    mailer_port: 465
     secret: ThisTokenIsNotSoSecretChangeIt

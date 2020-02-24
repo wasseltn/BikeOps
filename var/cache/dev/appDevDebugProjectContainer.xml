@@ -19,6 +19,7 @@
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="BikeBundle">BikeBundle\BikeBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
+      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
@@ -77,6 +78,11 @@
         <parameter key="path">C:\wamp64\www\Bikeops\vendor\friendsofsymfony\user-bundle</parameter>
         <parameter key="namespace">FOS\UserBundle</parameter>
       </parameter>
+      <parameter key="KnpPaginatorBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">C:\wamp64\www\Bikeops\vendor\knplabs\knp-paginator-bundle</parameter>
+        <parameter key="namespace">Knp\Bundle\PaginatorBundle</parameter>
+      </parameter>
       <parameter key="KnpSnappyBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">C:/wamp64/www/Bikeops/vendor/knplabs/knp-snappy-bundle</parameter>
@@ -118,9 +124,9 @@
     <parameter key="database_user">root</parameter>
     <parameter key="database_password">null</parameter>
     <parameter key="mailer_transport">smtp</parameter>
-    <parameter key="mailer_host">127.0.0.1</parameter>
-    <parameter key="mailer_user">null</parameter>
-    <parameter key="mailer_password">null</parameter>
+    <parameter key="mailer_host">smtp.gmail.com</parameter>
+    <parameter key="mailer_user">bikeops15@gmail.com</parameter>
+    <parameter key="mailer_password">az123456+</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
@@ -181,7 +187,7 @@
         <parameter>ROLE_ADMIN</parameter>
       </parameter>
     </parameter>
-    <parameter key="security.access.denied_url">null</parameter>
+    <parameter key="security.access.denied_url">admin_login</parameter>
     <parameter key="security.authentication.manager.erase_credentials">true</parameter>
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
     <parameter key="security.access.always_authenticate_before_granting">false</parameter>
@@ -225,21 +231,20 @@
     <parameter key="swiftmailer.email_sender.listener.class">Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</parameter>
     <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">tls</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">587</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">smtp.gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.username">bikeops15@gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.password">az123456+</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.local_domain">null</parameter>
-    <parameter key="swiftmailer.spool.default.memory.path">C:\wamp64\www\Bikeops\var\cache\dev/swiftmailer/spool/default</parameter>
-    <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.spool.enabled">false</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
     <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
     <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
-    <parameter key="swiftmailer.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.spool.enabled">false</parameter>
     <parameter key="swiftmailer.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.single_address">null</parameter>
     <parameter key="swiftmailer.mailers" type="collection">
@@ -397,10 +402,16 @@
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
     </parameter>
-    <parameter key="knp_snappy.pdf.binary">"D:\wkhtmltopdf\bin\wkhtmltopdf.exe"</parameter>
+    <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
+    <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
+    <parameter key="knp_paginator.template.pagination">@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig</parameter>
+    <parameter key="knp_paginator.template.filtration">@KnpPaginator/Pagination/filtration.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">@KnpPaginator/Pagination/twitter_bootstrap_v3_sortable_link.html.twig</parameter>
+    <parameter key="knp_paginator.page_range">5</parameter>
+    <parameter key="knp_snappy.pdf.binary">"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"</parameter>
     <parameter key="knp_snappy.pdf.options" type="collection"/>
     <parameter key="knp_snappy.pdf.env" type="collection"/>
-    <parameter key="knp_snappy.image.binary">"D:\wkhtmltopdf\bin\wkhtmltoimage.exe"</parameter>
+    <parameter key="knp_snappy.image.binary">C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe</parameter>
     <parameter key="knp_snappy.image.options" type="collection"/>
     <parameter key="knp_snappy.image.env" type="collection"/>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
@@ -658,7 +669,6 @@
       <argument type="tagged" tag="kernel.cache_warmer"/>
     </service>
     <service id="kernel.class_cache.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ClassCacheCacheWarmer">
-      <tag name="kernel.cache_warmer"/>
       <argument type="collection">
         <argument>Symfony\Component\HttpFoundation\ParameterBag</argument>
         <argument>Symfony\Component\HttpFoundation\HeaderBag</argument>
@@ -667,6 +677,7 @@
         <argument>Symfony\Component\HttpFoundation\Request</argument>
         <argument>Symfony\Component\HttpKernel\Kernel</argument>
       </argument>
+      <deprecated>The "%service_id%" option is deprecated since version 3.3, to be removed in 4.0.</deprecated>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer" public="true">
       <argument type="tagged" tag="kernel.cache_clearer"/>
@@ -1620,6 +1631,14 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.sliding_pagination"/>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.response</argument>
         <argument type="collection">
           <argument type="service" id="response_listener"/>
@@ -2083,6 +2102,46 @@
         </argument>
         <argument>-128</argument>
       </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.paginate"/>
+          <argument>before</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.paginate"/>
+          <argument>pagination</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.sortable"/>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.filtration"/>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.sliding_pagination"/>
+          <argument>pagination</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
     </service>
     <service id="debug.controller_resolver" class="Symfony\Component\HttpKernel\Controller\TraceableControllerResolver">
       <tag name="monolog.logger" channel="request"/>
@@ -2450,7 +2509,7 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher.x0_yxqh"/>
+        <argument type="service" id="security.request_matcher.xefon4q"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
         </argument>
@@ -2640,7 +2699,7 @@
       <argument type="service" id="security.http_utils"/>
       <argument></argument>
       <argument type="service" id="security.authentication.entry_point" on-invalid="null"/>
-      <argument>null</argument>
+      <argument>admin_login</argument>
       <argument type="service" id="security.access.denied_handler" on-invalid="null"/>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument>false</argument>
@@ -2924,7 +2983,7 @@
       <argument type="service" id="security.http_utils"/>
       <argument>main</argument>
       <argument type="service" id="security.authentication.form_entry_point.main"/>
-      <argument>null</argument>
+      <argument>admin_login</argument>
       <argument>null</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument>false</argument>
@@ -2957,8 +3016,8 @@
     <service id="security.request_matcher.h4hgfxz" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/resetting</argument>
     </service>
-    <service id="security.request_matcher.x0_yxqh" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/admin/</argument>
+    <service id="security.request_matcher.xefon4q" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/admin/^</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
@@ -3025,6 +3084,9 @@
         <argument type="service" id="doctrine.twig.doctrine_extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="knp_paginator.twig.extension.pagination"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
       <call method="addGlobal">
@@ -3033,6 +3095,10 @@
       </call>
       <call method="addRuntimeLoader">
         <argument type="service" id="twig.runtime_loader"/>
+      </call>
+      <call method="addGlobal">
+        <argument>pathToWeb</argument>
+        <argument>C:\wamp64\www\Bikeops/web</argument>
       </call>
       <configurator service="twig.configurator.environment" method="configure"/>
     </service>
@@ -3123,6 +3189,14 @@
       <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
         <argument>!FOSUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\vendor\knplabs\knp-paginator-bundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\vendor\knplabs\knp-paginator-bundle/Resources/views</argument>
+        <argument>!KnpPaginator</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
@@ -3304,6 +3378,14 @@
         <argument>!FOSUser</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\vendor\knplabs\knp-paginator-bundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\Bikeops\vendor\knplabs\knp-paginator-bundle/Resources/views</argument>
+        <argument>!KnpPaginator</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp64\www\Bikeops\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -3414,7 +3496,7 @@
     <service id="2_Swift_Transport_Esmtp_Auth_LoginAuthenticator~sfwgcfu" class="Swift_Transport_Esmtp_Auth_LoginAuthenticator" public="false"/>
     <service id="1_Swift_Transport_Esmtp_Auth_CramMd5Authenticator~sfwgcfu" class="Swift_Transport_Esmtp_Auth_CramMd5Authenticator" public="false"/>
     <service id="swiftmailer.mailer.abstract" class="Swift_Mailer" public="true" abstract="true">
-      <argument type="service" id="swiftmailer.mailer.default.transport.spool"/>
+      <argument type="service" id="swiftmailer.mailer.default.transport.smtp"/>
     </service>
     <service id="swiftmailer.transport.smtp.configurator.abstract" class="Symfony\Bundle\SwiftmailerBundle\DependencyInjection\SmtpTransportConfigurator" public="false" abstract="true"/>
     <service id="swiftmailer.transport.sendmail.abstract" class="Swift_Transport_SendmailTransport" public="false" abstract="true"/>
@@ -3463,10 +3545,10 @@
         <argument type="service" id="3_Swift_Transport_Esmtp_Auth_PlainAuthenticator~sfwgcfu"/>
       </argument>
       <call method="setUsername">
-        <argument>null</argument>
+        <argument>bikeops15@gmail.com</argument>
       </call>
       <call method="setPassword">
-        <argument>null</argument>
+        <argument>az123456+</argument>
       </call>
       <call method="setAuthMode">
         <argument>null</argument>
@@ -3486,13 +3568,13 @@
       </argument>
       <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
       <call method="setHost">
-        <argument>127.0.0.1</argument>
+        <argument>smtp.gmail.com</argument>
       </call>
       <call method="setPort">
-        <argument>25</argument>
+        <argument>587</argument>
       </call>
       <call method="setEncryption">
-        <argument>null</argument>
+        <argument>tls</argument>
       </call>
       <call method="setTimeout">
         <argument>30</argument>
@@ -3500,18 +3582,13 @@
       <call method="setSourceIp">
         <argument>null</argument>
       </call>
-      <configurator service="swiftmailer.transport.configurator.default" method="configure"/>
-    </service>
-    <service id="swiftmailer.mailer.default" class="Swift_Mailer" public="true">
-      <argument type="service" id="swiftmailer.mailer.default.transport.spool"/>
-    </service>
-    <service id="swiftmailer.mailer.default.spool.memory" class="Swift_MemorySpool" public="false"/>
-    <service id="swiftmailer.mailer.default.transport.spool" class="Swift_Transport_SpoolTransport" public="false">
-      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
-      <argument type="service" id="swiftmailer.mailer.default.spool.memory"/>
       <call method="registerPlugin">
         <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
       </call>
+      <configurator service="swiftmailer.transport.configurator.default" method="configure"/>
+    </service>
+    <service id="swiftmailer.mailer.default" class="Swift_Mailer" public="true">
+      <argument type="service" id="swiftmailer.mailer.default.transport.smtp"/>
     </service>
     <service id="swiftmailer.mailer.default.plugin.messagelogger" class="Swift_Plugins_MessageLogger" public="true">
       <tag name="swiftmailer.default.plugin"/>
@@ -4199,34 +4276,63 @@
         <argument type="service" id="service_container"/>
       </call>
     </service>
+    <service id="knp_paginator" class="Knp\Component\Pager\Paginator" public="true" lazy="true">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <call method="setDefaultPaginatorOptions">
+        <argument type="collection">
+          <argument key="pageParameterName">page</argument>
+          <argument key="sortFieldParameterName">sort</argument>
+          <argument key="sortDirectionParameterName">direction</argument>
+          <argument key="filterFieldParameterName">filterField</argument>
+          <argument key="filterValueParameterName">filterValue</argument>
+          <argument key="distinct">true</argument>
+        </argument>
+      </call>
+    </service>
+    <service id="knp_paginator.subscriber.paginate" class="Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sortable" class="Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.filtration" class="Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sliding_pagination" class="Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <tag name="container.hot_path"/>
+      <argument type="collection">
+        <argument key="defaultPaginationTemplate">@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig</argument>
+        <argument key="defaultSortableTemplate">@KnpPaginator/Pagination/twitter_bootstrap_v3_sortable_link.html.twig</argument>
+        <argument key="defaultFiltrationTemplate">@KnpPaginator/Pagination/filtration.html.twig</argument>
+        <argument key="defaultPageRange">5</argument>
+      </argument>
+    </service>
+    <service id="knp_paginator.helper.processor" class="Knp\Bundle\PaginatorBundle\Helper\Processor">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="knp_paginator.twig.extension.pagination" class="Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
+    </service>
     <service id="knp_snappy.pdf" class="Knp\Snappy\Pdf" public="true">
       <tag name="monolog.logger" channel="snappy"/>
-      <argument>"D:\wkhtmltopdf\bin\wkhtmltopdf.exe"</argument>
+      <argument>"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"</argument>
       <argument type="collection"/>
       <argument type="collection"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
-      </call>
-      <call method="setTemporaryFolder">
-        <argument>C:\wamp64\www\Bikeops\var\cache\dev/snappy</argument>
-      </call>
-      <call method="setTimeout">
-        <argument>20</argument>
       </call>
     </service>
     <service id="knp_snappy.image" class="Knp\Snappy\Image" public="true">
       <tag name="monolog.logger" channel="snappy"/>
-      <argument>"D:\wkhtmltopdf\bin\wkhtmltoimage.exe"</argument>
+      <argument>C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe</argument>
       <argument type="collection"/>
       <argument type="collection"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
-      </call>
-      <call method="setTemporaryFolder">
-        <argument>C:\wamp64\www\Bikeops\var\cache\dev/snappy</argument>
-      </call>
-      <call method="setTimeout">
-        <argument>20</argument>
       </call>
     </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
@@ -4845,17 +4951,12 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="swiftmailer.mailer.default.transport" alias="swiftmailer.mailer.default.transport.spool"/>
-    <service id="swiftmailer.mailer.default.spool" alias="swiftmailer.mailer.default.spool.memory"/>
-    <service id="swiftmailer.mailer.default.transport.real" alias="swiftmailer.mailer.default.transport.smtp" public="true"/>
-    <service id="swiftmailer.spool" alias="swiftmailer.mailer.default.spool.memory"/>
-    <service id="swiftmailer.transport.real" alias="swiftmailer.mailer.default.transport.smtp"/>
-    <service id="Swift_Spool" alias="swiftmailer.mailer.default.spool.memory" public="false"/>
+    <service id="swiftmailer.mailer.default.transport" alias="swiftmailer.mailer.default.transport.smtp" public="true"/>
     <service id="swiftmailer.plugin.messagelogger" alias="swiftmailer.mailer.default.plugin.messagelogger"/>
     <service id="swiftmailer.mailer" alias="swiftmailer.mailer.default"/>
-    <service id="swiftmailer.transport" alias="swiftmailer.mailer.default.transport.spool"/>
+    <service id="swiftmailer.transport" alias="swiftmailer.mailer.default.transport.smtp"/>
     <service id="Swift_Mailer" alias="swiftmailer.mailer.default" public="false"/>
-    <service id="Swift_Transport" alias="swiftmailer.mailer.default.transport.spool" public="false"/>
+    <service id="Swift_Transport" alias="swiftmailer.mailer.default.transport.smtp" public="false"/>
     <service id="mailer" alias="swiftmailer.mailer.default" public="true"/>
     <service id="Doctrine\DBAL\Driver\Connection" alias="doctrine.dbal.default_connection" public="false"/>
     <service id="Doctrine\DBAL\Connection" alias="doctrine.dbal.default_connection" public="false"/>
@@ -4885,6 +4986,7 @@
     <service id="fos_user.user_manager" alias="fos_user.user_manager.default" public="true"/>
     <service id="fos_user.mailer" alias="fos_user.mailer.default"/>
     <service id="fos_user.session" alias="session" public="false"/>
+    <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
     <service id="Knp\Snappy\Pdf" alias="knp_snappy.pdf"/>
     <service id="Knp\Snappy\Image" alias="knp_snappy.image"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>

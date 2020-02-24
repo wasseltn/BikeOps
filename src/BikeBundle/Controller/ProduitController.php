@@ -16,15 +16,83 @@ class ProduitController extends Controller
      * Lists all produit entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        /*
         $em = $this->getDoctrine()->getManager();
 
         $produits = $em->getRepository('BikeBundle:Produit')->findAll();
 
         return $this->render('produit/index.html.twig', array(
             'produits' => $produits,
-        ));
+        ));*/
+
+        $paginator=$this->get('knp_paginator');
+        $em = $this->getDoctrine()->getManager();
+        $prodRep = $em->getRepository(Produit::class);
+        $allProdsQuery = $prodRep->createQueryBuilder('p')->getQuery();
+
+        $produits = $paginator->paginate(
+            $allProdsQuery,
+            $request->query->getInt('page', 1),
+            5
+        );
+        return $this->render('produit/index2.html.twig', ['pagination' => $produits]);
+
+
+
+
+
+    }
+
+
+    public function statAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $velos = $em->getRepository('BikeBundle:Produit')->findBy(array('categorie'=>1));
+        $accs = $em->getRepository('BikeBundle:Produit')->findBy(array('categorie'=>3));
+        $pis = $em->getRepository('BikeBundle:Produit')->findBy(array('categorie'=>2));
+        $l=count($velos);
+        $l1=count($accs);
+        $l2=count($pis);
+        return $this->render('produit/stat.html.twig',array('l'=>$l,'l1'=>$l1,'l2'=>$l2));
+
+
+
+
+
+    }
+
+
+
+    public function frontAction(Request $request)
+    {
+        /*
+        $em = $this->getDoctrine()->getManager();
+
+        $produits = $em->getRepository('BikeBundle:Produit')->findAll();
+
+        return $this->render('produit/index.html.twig', array(
+            'produits' => $produits,
+        ));*/
+
+        $paginator=$this->get('knp_paginator');
+        $em = $this->getDoctrine()->getManager();
+        $prodRep = $em->getRepository(Produit::class);
+        $allProdsQuery = $prodRep->createQueryBuilder('p')->getQuery();
+
+        $produits = $paginator->paginate(
+            $allProdsQuery,
+            $request->query->getInt('page', 1),
+            3
+        );
+        return $this->render('produit/index.html.twig', ['pagination' => $produits]);
+
+
+
+
+
     }
 
     /**
