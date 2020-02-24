@@ -418,7 +418,7 @@
                                     </div>
                                     <div class="product-infomation">
                                         <h4><a href="single-product.html">Propel Advanced SL 0</a></h4>
-                                        <span class="product-price">$900.00</span>
+                                        <span class="red-light"><span class="product-price">$900.00</span></span>
                                         <span class="product-attr">
                                                 <i class="fa fa-circle light-blue"></i>
                                                 <i class="fa fa-circle orange"></i>
@@ -676,6 +676,7 @@
                     <!--Tab item-->
                     <div class="tab-pane" id="bmx">
                         <div class="row">
+                            {% for produit in produits %}
                             <div class="col-md-4 col-sm-6">
 
                                 <!--Start product item-->
@@ -683,15 +684,17 @@
                                     <div class="product-thubnail">
                                         <img src="{{ asset('images/product/product7.jpg') }}" alt="product 1" />
                                         <div class="product-meta">
-                                            <a class="add-to-cart" href="shop-cart.html">Add to cart</a>
+                                            <form action='{{ path('panier_add', {'productId': produit.getId()}) }}'>
+                                            <button class="add-to-cart">Add to cart</button>
+                                            </form>
                                             <span class="quick-view">
                                                     <a href="#">Quick view</a>
                                                 </span>
                                         </div>
                                     </div>
                                     <div class="product-infomation">
-                                        <h4><a href="single-product.html">Propel Advanced SL 0</a></h4>
-                                        <span class="product-price">$900.00</span>
+                                        <h4><a href="single-product.html">{{produit.name}}</a></h4>
+                                        <span class="product-price">{{produit.prix}} DT</span>
                                         <span class="product-attr">
                                                 <i class="fa fa-circle light-blue"></i>
                                                 <i class="fa fa-circle orange"></i>
@@ -704,62 +707,7 @@
                                 <!--End product item-->
 
                             </div>
-                            <div class="col-md-4 col-sm-6">
-
-                                <!--Start product item-->
-                                <div class="product-item">
-                                    <div class="product-thubnail">
-                                        <img src="{{ asset('images/product/product9.jpg') }}" alt="product 2" />
-                                        <div class="product-meta">
-                                            <a class="add-to-cart" href="shop-cart.html">Add to cart</a>
-                                            <span class="quick-view">
-                                                    <a href="#">Quick view</a>
-                                                </span>
-                                        </div>
-                                    </div>
-                                    <div class="product-infomation">
-                                        <h4><a href="single-product.html">Defy Advanced SL</a></h4>
-                                        <span class="product-price">$1,770.00</span>
-                                        <span class="product-attr">
-                                                <i class="fa fa-circle light-blue"></i>
-                                                <i class="fa fa-circle orange"></i>
-                                                <i class="fa fa-circle blueviolet"></i>
-                                                <i class="fa fa-circle orange-dark"></i>
-                                                <i class="fa fa-circle steelblue"></i>
-                                            </span>
-                                    </div>
-                                </div>
-                                <!--End product item-->
-
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-
-                                <!--Start product item-->
-                                <div class="product-item">
-                                    <div class="product-thubnail">
-                                        <img src="{{ asset('images/product/product1.jpg') }}"  alt="product 3" />
-                                        <div class="product-meta">
-                                            <a class="add-to-cart" href="shop-cart.html">Add to cart</a>
-                                            <span class="quick-view">
-                                                    <a href="#">Quick view</a>
-                                                </span>
-                                        </div>
-                                    </div>
-                                    <div class="product-infomation">
-                                        <h4><a href="single-product.html">FastRoad CoMax</a></h4>
-                                        <span class="product-price">$900.00</span>
-                                        <span class="product-attr">
-                                                <i class="fa fa-circle light-blue"></i>
-                                                <i class="fa fa-circle orange"></i>
-                                                <i class="fa fa-circle blueviolet"></i>
-                                                <i class="fa fa-circle orange-dark"></i>
-                                                <i class="fa fa-circle steelblue"></i>
-                                            </span>
-                                    </div>
-                                </div>
-                                <!--End product item-->
-
-                            </div>
+{% endfor %}
                         </div>
                     </div>
                     <!--End tab item-->

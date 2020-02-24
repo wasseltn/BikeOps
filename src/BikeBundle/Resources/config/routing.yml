@@ -3,6 +3,10 @@ bike_homepage:
     path:     /
     defaults: { _controller: BikeBundle:Default:index }
 
+myprofile:
+    path:     /myprofile
+    defaults: { _controller: BikeBundle:Default:myprofile }
+
 login:
     path:     /user_login
     defaults: { _controller: BikeBundle:Default:login }
@@ -10,6 +14,11 @@ login:
 signup:
     path:     /signup
     defaults: { _controller: BikeBundle:Default:signUp }
+
+mycart:
+    path:     /mycart
+    defaults: { _controller: BikeBundle:Panier:show }
+
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
@@ -40,9 +49,79 @@ bike_produit:
 
 
 
+bike_commande:
+    resource: "@BikeBundle/Resources/config/routing/commande.yml"
+    prefix:     /commande
+
+bike_panier:
+    resource: "@BikeBundle/Resources/config/routing/panier.yml"
+    prefix:     /panier
+
+bike_line_item:
+    resource: "@BikeBundle/Resources/config/routing/lineitem.yml"
+    prefix:     /lineitem
+
+precommande:
+    resource: "@BikeBundle/Resources/config/routing/precommande.yml"
+    prefix:     /precommande
+
+bike_livreur:
+    resource: "@BikeBundle/Resources/config/routing/livreur.yml"
+    prefix:   /livreur
+
 # Back Office Routing
 bike_admin_homepage:
     path:     /admin
     defaults: { _controller: BikeBundle:Default:indexAdmin }
 
+admin_login:
+    path:     /login_admin
+    defaults: { _controller: BikeBundle:Default:loginAdmin }
 
+Commande_list:
+    path:     /admin/commande/list
+    defaults: { _controller: "BikeBundle:Commande:list" }
+    methods:  GET
+
+Commande_details:
+    path:     /admin/commande/{id}/details
+    defaults: { _controller: "BikeBundle:Commande:details" }
+    methods:  GET
+
+Commande_edit:
+    path:     /admin/commande/{id}/edit
+    defaults: { _controller: "BikeBundle:Commande:edit" }
+    methods:  [GET, POST]
+
+Commande_delete:
+    path:     /admin/commande/{id}/delete
+    defaults: { _controller: "BikeBundle:Commande:delete" }
+
+Commande_confirme:
+    path:     /admin/commande/{id}/confirmer
+    defaults: { _controller: "BikeBundle:Commande:confirmerCommande" }
+
+Commande_pdf:
+    path:     /admin/commande/{id}/pdf
+    defaults: { _controller: "BikeBundle:Commande:pdf" }
+
+Commande_search:
+    path:     /admin/commande/search
+    defaults: { _controller: "BikeBundle:Commande:search" }
+
+coupon_list:
+    path:     /admin/coupon/list
+    defaults: { _controller: "BikeBundle:Coupon:show" }
+    methods:  GET
+
+coupon_add:
+    path:     /admin/coupon/add
+    defaults: { _controller: "BikeBundle:Coupon:add" }
+
+coupon_delete:
+    path:     /admin/coupon/delete/{id}
+    defaults: { _controller: "BikeBundle:Coupon:delete" }
+
+apply_coupon:
+    path:     /admin/coupon/apply/{panier}
+    defaults: { _controller: "BikeBundle:Coupon:apply" }

@@ -1,0 +1,27 @@
+<style>
+    .txt {
+        font-size: 20px;
+    }
+</style>
+<h3 class="card-title">Details Commande:  {{ commande.getid() }} </h3>
+<div class="txt">
+
+
+ID Commande:  {{ commande.getid() }} <br>
+Client :  {{ commande.utilisateur.getNom() }} {{ commande.utilisateur.getPrenom() }} <br>
+Status: {{ commande.getetat()}} <br>
+Addresse     {{ commande.utilisateur.getAddresse() }} <br>
+Date  {{ commande.date|date('D/M/Y') }}<br>
+type Paiement {{ commande.gettypePaiment() }}<br>
+type Livraison <br>
+Liste des produits : <br>
+<ul>
+    {% for commandeP in commandeProduits %}
+        <li>{{ commandeP.produit.getname() }}</li>
+    {% endfor %}
+</ul>
+<br>
+Prix total:   {{ total }}
+
+</div>
+

@@ -1,0 +1,107 @@
+{% extends 'front_base.html.twig' %}
+{% block body %}
+    <div class="container">
+
+
+        <h1 class="page-title">Pré-Commande</h1>
+
+
+        <form action='{{ path('Commande_new', {'panier': panier_data}) }}'>
+            <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <!--Cart totals-->
+                <div class="cart_totals">
+                    <div class="cart_totals_inner">
+                        <h2>TYPE DE PAIEMENT</h2>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="paiement" id="carte" value="carte" checked>
+                            <label class="form-check-label" for="carte">
+                                Par Carte
+                            </label>
+                            <!-- Button trigger modal -->
+                            <button style="margin-left: 50px" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                                PayPal Pay
+                            </button>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="paiement" id="livraison" value="livraison">
+                            <label class="form-check-label" for="livraison">
+                                A la livraison
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!--End cart totals-->
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+
+                <!--Cart totals-->
+                <div class="cart_totals">
+                    <div class="cart_totals_inner">
+                        <h2>Type de Livraison</h2>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="livraison"  value="retrait_magasin" checked>
+                            <label class="form-check-label" >
+                               Retrait Magasin
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="livraison" value="livraison_domicile">
+                            <label class="form-check-label" >
+                               Livraison Domicile
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!--End cart totals-->
+
+                </div>
+            </div> <br>
+            <div style="margin-left: 10px" class="row">
+                <button type="submit" class="btn btn-primary">Confirmer Commande</button>
+            </div>
+        </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- PayPal Logo -->
+                        <table border="0" cellpadding="10" cellspacing="0" align="center"><tbody><tr><td align="center"></td></tr><tr><td align="center">
+                            <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/logo_paypal_paiements_securises_vide_fr.jpg"
+                                 border="0" alt="PayPal Acceptance Mark" />
+                            <form style="    position: absolute;bottom:45px;left: 35%;" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <!-- Identify your business so that you can collect the payments. -->
+                                <input type="hidden" name="business" value="BikeOps15@gmail.com"> <!-- Add your PayPal Seller/Business email address Required-->
+                                <!-- Specify a Buy Now button. -->
+                                <input type="hidden" name="cmd" value="_xclick">
+                                <!-- Specify details about the item that buyers will purchase. -->
+                                <input type="hidden" name="item_name" value="Facture de paiement chez BikeOps"> <!-- Add Description e.g your room type Required-->
+                                <input type="hidden" name="amount" value="{{ panierObj.getTotal() }}"> <!-- Dynamically add Total Amount Required-->
+                                <input type="hidden" name="currency_code" value="EUR"> <!-- Update to your currency -->
+                                <input id="invoice" type="hidden" value="" name="invoice"> <!-- Add Unique invoice for each transaction -->
+                                <input type="hidden" name="notify_url" value="www.yourwebsite.com/ipn.php"> <!-- Please add IPN URL You can use this service to automate back-office and administrative functions, including fulfilling orders, tracking customers, and providing status and other information related to transactions. -->
+                                <input type='hidden' name='cancel_return' value='' /> <!-- Take customers to this URL when they cancel their checkout -->
+                                <input type='hidden' name='return' value='' /> <!-- Take customers to this URL when they finish their checkout  -->
+                                <!-- Display the payment button. -->
+                                <input style="height: 30px;" type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+                            </form>
+                                </td>
+                            </tr></tbody></table><!-- PayPal Logo -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <br>
+{% endblock %}

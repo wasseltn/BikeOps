@@ -1,0 +1,24 @@
+lineitem_index:
+    path:     /
+    defaults: { _controller: "BikeBundle:LineItem:index" }
+    methods:  GET
+
+lineitem_show:
+    path:     /{id}/show
+    defaults: { _controller: "BikeBundle:LineItem:show" }
+    methods:  GET
+
+lineitem_new:
+    path:     /new
+    defaults: { _controller: "BikeBundle:LineItem:new" }
+    methods:  [GET, POST]
+
+lineitem_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BikeBundle:LineItem:edit" }
+    methods:  [GET, POST]
+
+lineitem_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BikeBundle:LineItem:delete" }
+    methods:  DELETE

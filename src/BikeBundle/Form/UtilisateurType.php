@@ -3,6 +3,7 @@
 namespace BikeBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +20,7 @@ class UtilisateurType extends AbstractType
             ->add('nom',  TextType::class, array('label' => 'Nom'))
             ->add('prenom', TextType::class, array('label' => 'Prenom'))
             ->add('addresse', TextType::class, array('label' => 'Addresse'))
-            ->add('dateNaissance',  DateType::class, array('label' => 'Date De Naissance'));
+            ->add('dateNaissance',  BirthdayType::class, array('label' => 'Date De Naissance'));
     }
 
     public function getParent()

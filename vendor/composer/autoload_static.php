@@ -65,6 +65,8 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         ),
         'K' => 
         array (
+            'Knp\\Snappy\\' => 11,
+            'Knp\\Bundle\\SnappyBundle\\' => 24,
             'Knp\\Bundle\\PaginatorBundle\\' => 27,
         ),
         'I' => 
@@ -89,6 +91,10 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         'C' => 
         array (
             'Composer\\CaBundle\\' => 18,
+        ),
+        'B' => 
+        array (
+            'Behat\\Transliterator\\' => 21,
         ),
     );
 
@@ -205,6 +211,14 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Knp\\Snappy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
+        ),
+        'Knp\\Bundle\\SnappyBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
+        ),
         'Knp\\Bundle\\PaginatorBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
@@ -252,6 +266,10 @@ class ComposerStaticInit22829bf7bb61185dc6a9fdc9ec22847d
         'Composer\\CaBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
+        ),
+        'Behat\\Transliterator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/behat/transliterator/src/Behat/Transliterator',
         ),
     );
 

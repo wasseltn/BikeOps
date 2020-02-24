@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>AdminLTE 3 | Dashboard 2</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href={{ asset('Admin/plugins/fontawesome-free/css/all.min.css') }}>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href={{ asset('Admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}>
+    <!-- Theme style -->
+    <link rel="stylesheet" href={{ asset('Admin/dist/css/Adminlte.min.css') }}>
+    <!-- Google Font: Source Sans Pro -->
+    <link href={{ asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }} rel="stylesheet">
+</head>
+
+
+
+
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="../../index2.html"><b>BikeOps Admin</b> Dashboard</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+
+        {{ render(url('fos_user_security_login')) }}
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="{{ asset('Admin/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('Admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- overlayScrollbars -->
+<script src="{{ asset('Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('Admin/dist/js/Adminlte.js') }}"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="{{ asset('Admin/dist/js/demo.js') }}"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src={{asset('Admin/plugins/jquery-mousewheel/jquery.mousewheel.js')  }}></script>
+<script src="{{ asset('Admin/plugins/raphael/raphael.min.js') }}"></script>
+<script src="{{ asset('Admin/plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
+<script src="{{ asset('Admin/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
+<!-- ChartJS -->
+<script src="{{ asset('Admin/plugins/chart.js/Chart.min.js') }}"></script>
+
+<!-- PAGE SCRIPTS -->
+<script src="{{ asset('Admin/dist/js/pages/dashboard2.js') }}"></script>
+
+
+</body>

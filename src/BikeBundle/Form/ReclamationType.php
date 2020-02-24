@@ -2,9 +2,11 @@
 
 namespace BikeBundle\Form;
 
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class ReclamationType extends AbstractType
 {
@@ -13,7 +15,10 @@ class ReclamationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('commentaire')->add('sujet')->add('etat')->add('utilisateur');
+        $builder->add('commentaire', \Symfony\Component\Form\Extension\Core\Type\TextType::class ,array('label'=>'Commentaire'))
+            ->add('sujet',\Symfony\Component\Form\Extension\Core\Type\TextType::class, array('label'=>'Sujet'))
+            ->add('etat')
+            ->add('utilisateur');
     }/**
      * {@inheritdoc}
      */

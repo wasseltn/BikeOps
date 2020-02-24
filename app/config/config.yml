@@ -38,6 +38,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        pathToWeb: "%kernel.project_dir%/web"
 
 # Doctrine Configuration
 doctrine:
@@ -67,7 +69,8 @@ swiftmailer:
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
-    spool: { type: memory }
+    encryption: tls
+    port:    587
 
 sensio_framework_extra:
    router:
@@ -98,3 +101,13 @@ knp_paginator:
         pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig'     # sliding pagination controls template
         sortable: '@KnpPaginator/Pagination/twitter_bootstrap_v3_sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"'
+        options:    []
+    image:
+        enabled:    true
+        binary:     'C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe'
+        options:    []
+

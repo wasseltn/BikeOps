@@ -1,0 +1,28 @@
+panier_index:
+    path:     /
+    defaults: { _controller: "BikeBundle:Panier:index" }
+    methods:  GET
+
+panier_show:
+    path:     /{id}/show
+    defaults: { _controller: "BikeBundle:Panier:show" }
+    methods:  GET
+
+panier_add:
+    path:     /add/{productId}
+    defaults: { _controller: "BikeBundle:Panier:add" }
+    methods:  [GET, POST]
+
+panier_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BikeBundle:Panier:edit" }
+    methods:  [GET, POST]
+
+panier_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BikeBundle:Panier:delete" }
+    methods:  DELETE
+
+item_delete:
+    path:     /remove/{itemProduct}/{itemCart}
+    defaults: { _controller: "BikeBundle:Panier:remove" }

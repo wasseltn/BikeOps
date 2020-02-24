@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Liste des commandes</h3>
+
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <form action=" {{path('Commande_search') }}">
+                                <input  type="text" name="keyword" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>ID Commande</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>type Paiement</th>
+                            <th>type Livraison</th>
+                            <th>Confirmer commande</th>
+                            <th>Actions</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for commande in commandes  %}
+
+                            <tr>
+                                <td>{{ commande.getid() }}</td>
+                                <td>{{ commande.utilisateur.getNom() }} {{ commande.utilisateur.getPrenom() }} </td>
+                                <td>
+                                    {% if commande.getetat() == 'en_attente' %}
+                                    <span class="badge bg-danger">{{ commande.getetat()}}</span>
+                                    {% else %}
+                                        <span class="badge bg-success">{{ commande.getetat()}}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ commande.date|date('D/M/Y') }}</td>
+                                <td>{{ commande.gettypePaiment() }}  </td>
+                                <td></td>
+                                <td>
+                                    <a class="btn btn-app" href='{{ path('Commande_confirme',{id:commande.getId()})  }}'>
+                                        <i class="fas fa-check-circle"></i>
+                                        Confirmer</a>
+                                </td>
+                                <td><a href='{{ path('Commande_delete', {id: commande.getId()}) }}' >Delete </a> <br>
+                                    <a href='{{ path('Commande_details', {id: commande.getId()}) }}' >Details</a> <td><br>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+{% endblock %}
