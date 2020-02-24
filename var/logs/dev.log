@@ -3263,3 +3263,8 @@
 [2020-02-20 20:22:19] doctrine.DEBUG: SELECT DISTINCT p0_.id AS id_0 FROM produit p0_ LIMIT 3 OFFSET 0 [] []
 [2020-02-20 20:22:19] doctrine.DEBUG: SELECT p0_.id AS id_0, p0_.name AS name_1, p0_.description AS description_2, p0_.stock AS stock_3, p0_.prix AS prix_4, p0_.categorie_id AS categorie_id_5 FROM produit p0_ WHERE p0_.id IN (?) [["1","6","7"]] []
 [2020-02-20 20:22:19] request.INFO: Matched route "_wdt". {"route":"_wdt","route_parameters":{"_controller":"web_profiler.controller.profiler:toolbarAction","token":"abf61b","_route":"_wdt"},"request_uri":"http://localhost/Bikeops/web/app_dev.php/_wdt/abf61b","method":"GET"} []
+[2020-02-23 17:50:50] request.INFO: Matched route "produit_front". {"route":"produit_front","route_parameters":{"_controller":"BikeBundle\\Controller\\ProduitController::frontAction","_route":"produit_front"},"request_uri":"http://localhost/Bikeops/web/app_dev.php/produit/","method":"GET"} []
+[2020-02-23 17:50:50] security.INFO: Populated the TokenStorage with an anonymous Token. [] []
+[2020-02-23 17:50:51] doctrine.DEBUG: SELECT count(DISTINCT p0_.id) AS sclr_0 FROM produit p0_ [] []
+[2020-02-23 17:50:51] doctrine.DEBUG: SELECT DISTINCT p0_.id AS id_0 FROM produit p0_ LIMIT 3 OFFSET 0 [] []
+[2020-02-23 17:50:51] doctrine.DEBUG: SELECT p0_.id AS id_0, p0_.name AS name_1, p0_.description AS description_2, p0_.stock AS stock_3, p0_.prix AS prix_4, p0_.categorie_id AS categorie_id_5 FROM produit p0_ WHERE p0_.id IN (?) [["1","6","7"]] []
