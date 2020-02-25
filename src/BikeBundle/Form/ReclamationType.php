@@ -17,8 +17,7 @@ class ReclamationType extends AbstractType
     {
         $builder->add('commentaire', \Symfony\Component\Form\Extension\Core\Type\TextType::class ,array('label'=>'Commentaire'))
             ->add('sujet',\Symfony\Component\Form\Extension\Core\Type\TextType::class, array('label'=>'Sujet'))
-            ->add('etat')
-            ->add('utilisateur');
+            ->add('etat');
     }/**
      * {@inheritdoc}
      */

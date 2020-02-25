@@ -3,6 +3,9 @@
 namespace BikeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use SBC\NotificationsBundle\Builder\NotificationBuilder;
+use SBC\NotificationsBundle\Model\NotifiableInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Reclamation
@@ -10,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="reclamation")
  * @ORM\Entity(repositoryClass="BikeBundle\Repository\ReclamationRepository")
  */
-class Reclamation
+class Reclamation implements NotifiableInterface
 {
     /**
      * @var int
@@ -25,6 +28,7 @@ class Reclamation
      * @var string
      *
      * @ORM\Column(name="commentaire", type="string", length=255)
+     * @Assert\Length(min="3",max="20")
      */
     private $commentaire;
 
@@ -32,13 +36,17 @@ class Reclamation
      * @var string
      *
      * @ORM\Column(name="sujet", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min="3",max="20")
      */
     private $sujet;
+
 
     /**
      * @var string
      *
      * @ORM\Column(name="etat", type="boolean")
+
      */
     private $etat;
 
@@ -147,5 +155,48 @@ class Reclamation
     }
 
 
+    /**
+     * Build notifications on entity creation
+     * @param NotificationBuilder $builder
+     * @return NotificationBuilder
+     */
+    public function notificationsOnCreate(NotificationBuilder $builder)
+    {
+        $notif = new Notification();
+        $notif
+            ->setTitle('Nouvelle Reclamation '.$this->getCommentaire())
+            ->setDescription($this->commentaire)
+            ->setRoute('reclamation_show')
+            ->setParameters(array('id' => $this->getId()));
+            $builder -> addNotification($notif);
+        return $builder;
+    }
+
+    /**
+     * Build notifications on entity update
+     * @param NotificationBuilder $builder
+     * @return NotificationBuilder
+     */
+    public function notificationsOnUpdate(NotificationBuilder $builder)
+    {
+        $notif = new Notification();
+        $notif
+            ->setTitle('Mise a jours Reclamation '.$this->getCommentaire())
+            ->setDescription($this->commentaire)
+            ->setRoute('reclamation_show')
+            ->setParameters(array('id' => $this->getId()));
+        $builder -> addNotification($notif);
+        return $builder;
+    }
+
+    /**
+     * Build notifications on entity delete
+     * @param NotificationBuilder $builder
+     * @return NotificationBuilder
+     */
+    public function notificationsOnDelete(NotificationBuilder $builder)
+    {
+        return $builder;
+    }
 }
 

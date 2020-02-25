@@ -112,25 +112,16 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge">15</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                {% for notif in notifications %}
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 4 new messages
-                        <span class="float-right text-muted text-sm">3 mins</span>
+                <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> {{ notif.title }}
+                        <span class="float-right text-muted text-sm">{{ notif.date|date('d\m\y') }}</span>
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 8 friend requests
-                        <span class="float-right text-muted text-sm">12 hours</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i> 3 new reports
-                        <span class="float-right text-muted text-sm">2 days</span>
-                    </a>
+
+                {% endfor %}
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
@@ -246,7 +237,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a href="#" class="nav-link">
+                        <a href="{{ path('reclamation_index')}}#" class="nav-link">
                             <i class="nav-icon fas fa-exclamation-triangle"></i>
                             <p>
                                 Reclamations
@@ -264,7 +255,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ path('evenement_index') }}#" class="nav-link">
                             <i class="nav-icon fas fa-fire"></i>
                             <p>
                                 Evenements
@@ -272,8 +263,17 @@
                             </p>
                         </a>
                     </li>
+                    <li> class="nav-item>
+                         <a href="{{ path('formateur_index') }}#" class="nav-link">
+                            <i class="nav-icon fas fa-fire"></i>
+                            <p>
+                              formateurs
+
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
-                        <a href="{{ path('Commande_list') }}" class="nav-link">
+                         <a href="{{ path('Commande_list') }}" class="nav-link">
                             <i class="nav-icon fas fa-tags"></i>
                             <p>
                                 Commandes
@@ -339,6 +339,7 @@
 {% endblock %}
 
             </div><!--/. container-fluid -->
+
         </section>
         <!-- /.content -->
     </div>
@@ -379,6 +380,26 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="{{ asset('Admin/dist/js/pages/dashboard2.js') }}"></script>
+<!-- Notification -->
+{# Call NotificationsBundles's assets #}
+{{ notifications_assets() }}
+<script>
+    /**
+     * After calling notifications_assets() "pusher" is now available
+     * and you can use it this way
+     */
+
+        // select the channel you want to listen to
+    var channel = pusher.subscribe("notifications");// notifications channel
+    channel.bind("my-event", function(data) {
+        console.log('from notifications channel', data);
+    });
+
+    var channel = pusher.subscribe("messages");// messages channel
+    channel.bind("my-event", function(data) {
+        console.log('from messages channel', data);
+    });
+</script>
 
 {% block scripts %}{% endblock %}
 
