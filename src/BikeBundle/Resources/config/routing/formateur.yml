@@ -1,0 +1,24 @@
+formateur_index:
+    path:     /
+    defaults: { _controller: "BikeBundle:Formateur:index" }
+    methods:  GET
+
+formateur_show:
+    path:     /{id}/show
+    defaults: { _controller: "BikeBundle:Formateur:show" }
+    methods:  GET
+
+formateur_new:
+    path:     /new
+    defaults: { _controller: "BikeBundle:Formateur:new" }
+    methods:  [GET, POST]
+
+formateur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BikeBundle:Formateur:edit" }
+    methods:  [GET, POST]
+
+formateur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BikeBundle:Formateur:delete" }
+    methods:  DELETE

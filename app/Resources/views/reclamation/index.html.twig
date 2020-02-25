@@ -23,10 +23,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('reclamation_show', { 'id': reclamation.id }) }}">show</a>
+                            <a href="{{ path('reclamation_show', { 'id': reclamation.id }) }}"><BUTTON CLASS="btn btn-info">show</BUTTON></a>
                         </li>
                         <li>
-                            <a href="{{ path('reclamation_edit', { 'id': reclamation.id }) }}">edit</a>
+                            <a href="{{ path('reclamation_edit', { 'id': reclamation.id }) }}"><BUTTON CLASS="btn btn-danger">edit</BUTTON></a>
                         </li>
                     </ul>
                 </td>
@@ -35,9 +35,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('reclamation_new') }}">Create a new reclamation</a>
-        </li>
-    </ul>
+
 {% endblock %}

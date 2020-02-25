@@ -3,6 +3,7 @@
 namespace BikeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Evenement
@@ -25,6 +26,8 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=255)
+     ** @Assert\Length(min="3",max="20")
+     * @Assert\NotBlank()
      */
     private $lieu;
 
@@ -32,6 +35,7 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="dateDebut", type="date")
+     * @Assert\NotBlank()
      */
     private $dateDebut;
 
@@ -46,6 +50,7 @@ class Evenement
      * @var int
      *
      * @ORM\Column(name="nbPlace", type="integer")
+     * @Assert\Length(min="1",max="100")
      */
     private $nbPlace;
 
@@ -53,6 +58,7 @@ class Evenement
      * @var int
      *
      * @ORM\Column(name="Prix", type="integer")
+     * @Assert\Range(min="10",max="100000")
      */
     private $prix;
 
@@ -60,6 +66,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @Assert\Length(min="3",max="20")
      */
     private $description;
 
@@ -67,14 +74,32 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(min="3",max="20")
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Formateur")
+     * @ORM\JoinColumn(name="formateur_id", referencedColumnName="id")
      */
-    private $utilisateur;
+    private $formateur;
+
+    /**
+     * @return mixed
+     */
+    public function getFormateur()
+    {
+        return $this->formateur;
+    }
+
+    /**
+     * @param mixed $formateur
+     */
+    public function setFormateur($formateur)
+    {
+        $this->formateur = $formateur;
+    }
 
 
     /**

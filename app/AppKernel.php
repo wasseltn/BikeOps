@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new BikeBundle\BikeBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new SBC\NotificationsBundle\NotificationsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
         ];

@@ -1,0 +1,41 @@
+{% extends 'front_base.html.twig' %}
+
+{% block body %}
+    <h1>Reclamations list</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Commentaire</th>
+            <th>Sujet</th>
+            <th>Etat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td><a href="{{ path('reclamation_show', { 'id': reclamation.id }) }}">{{ reclamation.id }}</a></td>
+                <td>{{ reclamation.commentaire }}</td>
+                <td>{{ reclamation.sujet }}</td>
+                <td>{% if reclamation.etat %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reclamation_editf', { 'id': reclamation.id }) }}" class="btn-primary"><BUTTON CLASS="btn btn-info">edit</BUTTON></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="col-md-3">
+    <div class="col-md-6" >
+    <a class="button btn-primary" href="{{ path('reclamation_newf') }}"><BUTTON CLASS="btn btn-info">Ajouter</BUTTON></a>
+</div>
+</div>
+
+{% endblock %}

@@ -69,8 +69,14 @@ swiftmailer:
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
-    encryption: tls
+    encryption: ssl
     port:    587
+    spool: { type: memory }
+    auth_mode: login
+    stream_options:
+        ssl:
+            allow_self_signed: true
+            verify_peer: false
 
 sensio_framework_extra:
    router:
@@ -86,6 +92,17 @@ fos_user:
     from_email:
         address: "wassel.laouini@esprit.tn"
         sender_name: "BikeOps"
+
+# NotificationsBundle configuration
+notifications:
+    app_id:     950153
+    app_key:    ecd17581c123187d2fc2
+    app_secret: 652d52ff4ee2664c68ab
+    cluster:    eu
+    # Optional
+    # Default false: work without ssl encryption
+    # Set it to true to work with ssl encryption
+    encrypted:  false
 
 
 knp_paginator:
