@@ -4,6 +4,7 @@ namespace BikeBundle\Controller;
 
 use BikeBundle\Entity\Coupon;
 use BikeBundle\Entity\LineItem;
+use BikeBundle\Entity\Notification;
 use BikeBundle\Entity\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,8 +16,8 @@ class CouponController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $couponCodes = $em->getRepository(Coupon::class)->findAll();
-
-        return $this->render('coupon/list.html.twig', array('codes' => $couponCodes));
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
+        return $this->render('coupon/list.html.twig', array('codes' => $couponCodes,'notifications' => $notif));
 
     }
 

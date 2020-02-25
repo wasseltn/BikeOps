@@ -3,6 +3,7 @@
 namespace BikeBundle\Controller;
 
 use BikeBundle\Entity\Livraison;
+use BikeBundle\Entity\Notification;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,9 +24,10 @@ class LivraisonController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $livraisons = $em->getRepository('BikeBundle:Livraison')->findAll();
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('livraison/index.html.twig', array(
             'livraisons' => $livraisons,
+            'notifications' => $notif
         ));
     }
     /**

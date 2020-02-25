@@ -19,9 +19,12 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
+
         $produits = $em->getRepository(Produit::class)->findAll();
         return $this->render('home.html.twig', array(
             'produits' => $produits,
+            'notifications' => $notif
         ));
     }
 

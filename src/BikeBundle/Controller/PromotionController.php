@@ -2,6 +2,7 @@
 
 namespace BikeBundle\Controller;
 
+use BikeBundle\Entity\Notification;
 use BikeBundle\Entity\Promotion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +22,10 @@ class PromotionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $promotions = $em->getRepository('BikeBundle:Promotion')->findAll();
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('promotion/index.html.twig', array(
             'promotions' => $promotions,
+            'notifications' => $notif
         ));
     }
 

@@ -6,6 +6,7 @@ use BikeBundle\Entity\Commande;
 use BikeBundle\Entity\CommandeProduit;
 use BikeBundle\Entity\LineItem;
 use BikeBundle\Entity\Livraison;
+use BikeBundle\Entity\Notification;
 use BikeBundle\Entity\Panier;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Swift_Image;
@@ -27,8 +28,8 @@ class CommandeController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $commandes = $em->getRepository(Commande::class)->findAll();
-
-        return $this->render('commande/list.html.twig', array('commandes' => $commandes));
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
+        return $this->render('commande/list.html.twig', array('commandes' => $commandes,'notifications' => $notif));
 
     }
 
@@ -162,7 +163,7 @@ class CommandeController extends Controller
         $em = $this->getDoctrine()->getManager();
         /* @var Commande $commande */
         $commande = $em->getRepository(commande::class)->find($id);
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         $commandeProduits = $em->getRepository(CommandeProduit::class)->findBy(['commande' => $id]);
 
         $total = 0;
@@ -172,6 +173,7 @@ class CommandeController extends Controller
         }
         return $this->render('commande/details.html.twig',
             array(
+                'notifications' => $notif,
                 'commande' => $commande,
                 'commandeProduits' => $commandeProduits,
                 'total' => $total));
@@ -208,16 +210,17 @@ class CommandeController extends Controller
     public function searchAction(Request $request)
     {
         $data = $request->get('keyword');
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('
         SELECT c, u FROM BikeBundle:Commande c 
         JOIN c.utilisateur u
-        WHERE u.username =:item')
-            ->setParameter('item',  $data);
+        WHERE u.nom like :item')
+            ->setParameter('item',  '%'.$data.'%');
 
         $commandes = $query->getResult();
 
-        return $this->render('commande/list.html.twig', array('commandes' => $commandes));
+        return $this->render('commande/list.html.twig', array('commandes' => $commandes,'notifications' => $notif));
 
 
     }

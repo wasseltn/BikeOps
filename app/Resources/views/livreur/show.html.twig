@@ -17,6 +17,14 @@
                 <th>Prenom</th>
                 <td>{{ livreur.prenom }}</td>
             </tr>
+            <tr>
+                <th>Etat</th>
+                {% if livreur.etat==true %}
+                    <td>Disponible</td>
+                {% else %}
+                    <td>N'est pas disponible</td>
+                {% endif %}
+            </tr>
         </tbody>
     </table>
 

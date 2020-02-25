@@ -38,9 +38,11 @@ class EvenementController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $evenements = $em->getRepository('BikeBundle:Evenement')->findAll();
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
 
         return $this->render('evenement/showF.html.twig', array(
             'evenements' => $evenements,
+            'notifications' => $notif
         ));
     }
 

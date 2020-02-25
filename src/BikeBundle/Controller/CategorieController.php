@@ -3,6 +3,7 @@
 namespace BikeBundle\Controller;
 
 use BikeBundle\Entity\Categorie;
+use BikeBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,9 +22,11 @@ class CategorieController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('BikeBundle:Categorie')->findAll();
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
 
         return $this->render('categorie/index.html.twig', array(
             'categories' => $categories,
+            'notifications' => $notif
         ));
     }
 

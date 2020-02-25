@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Prenom</th>
+                <th>Etat</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,6 +19,12 @@
                 <td><a href="{{ path('livreur_show', { 'id': livreur.id }) }}">{{ livreur.id }}</a></td>
                 <td>{{ livreur.nom }}</td>
                 <td>{{ livreur.prenom }}</td>
+
+                {% if livreur.etat==true %}
+                <td>Disponible</td>
+                {% else %}
+                <td>N'est pas disponible</td>
+                    {% endif %}
                 <td>
                     <ul>
                         <li>

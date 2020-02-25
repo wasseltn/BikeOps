@@ -37,7 +37,7 @@ bike_evenement:
 
 bike_reclamation:
     resource: "@BikeBundle/Resources/config/routing/reclamation.yml"
-    prefix:   /
+    prefix:   /reclamation
 
 bike_categorie:
     resource: "@BikeBundle/Resources/config/routing/categorie.yml"

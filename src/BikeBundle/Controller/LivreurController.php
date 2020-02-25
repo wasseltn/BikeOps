@@ -3,6 +3,7 @@
 namespace BikeBundle\Controller;
 
 use BikeBundle\Entity\Livreur;
+use BikeBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,9 +22,11 @@ class LivreurController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $livreurs = $em->getRepository('BikeBundle:Livreur')->findAll();
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
 
         return $this->render('livreur/index.html.twig', array(
             'livreurs' => $livreurs,
+            'notifications' => $notif
         ));
     }
 
@@ -35,6 +38,7 @@ class LivreurController extends Controller
     {
         $livreur = new Livreur();
         $form = $this->createForm('BikeBundle\Form\LivreurType', $livreur);
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,6 +52,7 @@ class LivreurController extends Controller
         return $this->render('livreur/new.html.twig', array(
             'livreur' => $livreur,
             'form' => $form->createView(),
+            'notifications' => $notif
         ));
     }
 
@@ -58,10 +63,11 @@ class LivreurController extends Controller
     public function showAction(Livreur $livreur)
     {
         $deleteForm = $this->createDeleteForm($livreur);
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('livreur/show.html.twig', array(
             'livreur' => $livreur,
             'delete_form' => $deleteForm->createView(),
+            'notifications' => $notif
         ));
     }
 
@@ -74,6 +80,7 @@ class LivreurController extends Controller
         $deleteForm = $this->createDeleteForm($livreur);
         $editForm = $this->createForm('BikeBundle\Form\LivreurType', $livreur);
         $editForm->handleRequest($request);
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -85,6 +92,7 @@ class LivreurController extends Controller
             'livreur' => $livreur,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'notifications' => $notif
         ));
     }
 

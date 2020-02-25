@@ -28,7 +28,9 @@
                 <td>{{ evenement.prix }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.name }}</td>
+                {% if evenement.formateur.nom is defined %}
                 <td>{{ evenement.formateur.nom }}</td>
+                {%  endif %}
                 <td><a href="{{ path('evenement_mail',{'event':evenement.name}) }}"><button type="button" class="btn btn-info" >Reserver</button></a></td>
                 <td>
                 </td>
