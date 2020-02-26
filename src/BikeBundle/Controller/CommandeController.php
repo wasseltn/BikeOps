@@ -60,6 +60,7 @@ class CommandeController extends Controller
         $livraison->setUtilisateur($user);
         $livraison->setAdresse($user->getAddresse());
         $livraison->setEtat(0);
+        $livraison->setVille($user->getVille());
         $em->persist($livraison);
         $em->flush();
 
@@ -72,10 +73,11 @@ class CommandeController extends Controller
         $commande->setTypePaiment($type_paiement);
         $commande->setLivraison($livraison);
 
+
         $em->persist($commande);
         $em->flush();
 
-        $livraison->setCommande($commande);
+       // $livraison->setCommande($commande);
 
         /* Up to here, we added a commande **/
 

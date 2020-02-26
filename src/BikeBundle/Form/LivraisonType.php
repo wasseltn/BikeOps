@@ -21,8 +21,7 @@ class LivraisonType extends AbstractType
                 'Kasserine'=>'Kasserine','Monastir'=>'Monastir','Mahdia'=>'Mahdia','Sidi Bou Zid'=>'Sidi Bou Zid','Sfax'=>'Sfax','Gabes'=>'Gabes','Kebli'=>'Kebli',
                 'Tozeur'=>'Tozeur','Medenine'=>'Medenine','Tataouine'=>'Tataouine'],'expanded'=>false,'multiple'=>false))
             ->add('adresse')
-            ->add('Livreur_id',EntityType::class,array('class'=>'BikeBundle:Livreur','choice_label'=>'nom'))
-            ->add('commande_id');
+            ->add('Livreur_id',EntityType::class,array('class'=>'BikeBundle:Livreur','choice_label'=>'nom'));
     }/**
      * {@inheritdoc}
      */

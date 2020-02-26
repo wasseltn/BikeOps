@@ -17,6 +17,11 @@ produit_show:
     defaults: { _controller: "BikeBundle:Produit:show" }
     methods:  GET
 
+produit_showf:
+    path:     /{id}/showf
+    defaults: { _controller: "BikeBundle:Produit:showf" }
+    methods:  GET
+
 produit_new:
     path:     /new
     defaults: { _controller: "BikeBundle:Produit:new" }

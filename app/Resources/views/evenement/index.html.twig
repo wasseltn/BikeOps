@@ -2,57 +2,81 @@
 
 {% block body %}
     <h1>Evenements list</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Lieu</th>
-                <th>Datedebut</th>
-                <th>Datefin</th>
-                <th>Nbplace</th>
-                <th>Prix</th>
-                <th>Description</th>
-                <th>Nom</th>
-                <th>Formateur</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
-                <td>{{ evenement.lieu }}</td>
-                <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ evenement.nbPlace }}</td>
-                <td>{{ evenement.prix }}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{{ evenement.name }}</td>
-                {% if evenement.formateur.nom is defined %}
-                <td>{{ evenement.formateur.nom }}</td>
-                {% endif %}
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}"><BUTTON CLASS="btn btn-info">show</BUTTON></a>
-                        </li>
-                        <li>
-                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><BUTTON CLASS="btn btn-danger">edit</BUTTON></a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="data-table-area ma-b-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sparkline13-list">
+                        <div class="sparkline13-hd">
+                            <div class="main-sparkline13-hd">
+                            </div>
+                        </div>
+                        <div class="sparkline13-graph">
+                            <div class="datatable-dashv1-list custom-datatable-overright">
 
-    <ul>
-        <li>
-            <a href="{{ path('evenement_new') }}"><BUTTON CLASS="btn btn-warning">Create a new evenement</BUTTON></a>
-        </li>
+                                <table id="table"  data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true"
+                                       data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                       data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                    <thead>
+                                    <tr>
+                                        <th data-field="id" data-editable="false">id</th>
+                                        <th data-field="name">lieu</th>
+                                        <th data-field="adresse" data-editable="false">Date debut</th>
+                                        <th data-field="ville">Date fin</th>
+                                        <th data-field="livreur">Nombre place</th>
+                                        <th data-field="livreur2">Prix</th>
+                                        <th data-field="livreur1">Description</th>
+                                        <th data-field="type">Name</th>
+                                        <th data-field="action">Action</th>
 
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for e in evenements %}
+                                        <tr>
+
+                                            <td> {{e.id}} </td>
+                                            <td> {{e.lieu}} </td>
+                                            <td> {{e.dateDebut|date('Y-m-d')}} </td>
+                                            <td> {{ e.dateFin|date('Y-m-d') }} </td>
+                                            <td> {{ e.nbPlace }} </td>
+                                            <td> {{ e.prix }} </td>
+                                            <td> {{ e.description }} </td>
+                                            <td> {{ e.name }} </td>
+
+
+                                            <td>
+                                                <a href="{{ path('evenement_edit', { 'id': e.id }) }}"><button type="button" class="btn btn-success">Edit</button></a>
+                                                <a href="{{ path('evenement_show', { 'id': e.id }) }}"><button type="button" class="btn btn-info">Show</button></a>
+                                            </td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <li>
+        <a href="{{ path('evenement_new') }}"><BUTTON CLASS="btn btn-warning">Create a new evenement</BUTTON></a>
+    </li>
         <li>
             <a href="{{ path('evenement_calendrier') }}"><BUTTON CLASS="btn btn-dark">Calendar</BUTTON></a>
         </li>
     </ul>
+{% endblock %}
+{% block JS %}
+    <script src="{{ asset('data-table/bootstrap-table.js')}}"></script>
+    <script src="{{ asset('data-table/tableExport.js')}}"></script>
+    <script src="{{ asset('data-table/data-table-active.js')}}"></script>
+    <script src="{{ asset('data-table/bootstrap-table-editable.js')}}"></script>
+    <script src="{{ asset('data-table/bootstrap-editable.js')}}"></script>
+    <script src="{{ asset('data-table/bootstrap-table-resizable.js')}}"></script>
+    <script src="{{ asset('data-table/colResizable-1.5.source.js')}}"></script>
+    <script src="{{ asset('data-table/bootstrap-table-export.js')}}"></script>
 {% endblock %}

@@ -50,9 +50,9 @@ class LivraisonController extends Controller
 
         $l = $em->getRepository('BikeBundle:Livraison')->findAll();
 
-        $pageUrl = $this->generateUrl('livraison_pdf', array('livraisons'=>$l), UrlGeneratorInterface::ABSOLUTE_URL);
+        $pageUrl = $this->render('livraison/pdf.html.twig', array('livraisons'=>$l));
         return new PdfResponse(
-            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($pageUrl),
             'livraisons.pdf'
         );
 
@@ -64,10 +64,10 @@ class LivraisonController extends Controller
     public function mapAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
        // $livraisons = $em->getRepository('BikeBundle:Livraison')->findAll();
 
-        return $this->render('livraison/map.html.twig');
+        return $this->render('livraison/map.html.twig', array('notifications' => $notif));
     }
 
 
@@ -79,6 +79,7 @@ class LivraisonController extends Controller
     {
         $livraison = new Livraison();
         $form = $this->createForm('BikeBundle\Form\LivraisonType', $livraison);
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,6 +93,7 @@ class LivraisonController extends Controller
         return $this->render('livraison/new.html.twig', array(
             'livraison' => $livraison,
             'form' => $form->createView(),
+            'notifications' => $notif
         ));
     }
 
@@ -102,10 +104,12 @@ class LivraisonController extends Controller
     public function showAction(Livraison $livraison)
     {
         $deleteForm = $this->createDeleteForm($livraison);
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
 
         return $this->render('livraison/show.html.twig', array(
             'livraison' => $livraison,
             'delete_form' => $deleteForm->createView(),
+            'notifications' => $notif
         ));
     }
 
@@ -118,6 +122,7 @@ class LivraisonController extends Controller
         $deleteForm = $this->createDeleteForm($livraison);
         $editForm = $this->createForm('BikeBundle\Form\LivraisonType', $livraison);
         $editForm->handleRequest($request);
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -129,6 +134,7 @@ class LivraisonController extends Controller
             'livraison' => $livraison,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'notifications' => $notif
         ));
     }
 
@@ -174,8 +180,10 @@ class LivraisonController extends Controller
     public function villeAction($ville)
     {
         $v=$this->getDoctrine()->getRepository(Livraison::class)->findBy(array('ville'=>$ville));
+        $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('livraison/showliv.html.twig', array(
-            'livraisons' => $v
+            'livraisons' => $v,
+            'notifications' => $notif
         ));
     }
 

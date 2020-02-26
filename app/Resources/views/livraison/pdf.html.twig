@@ -27,7 +27,11 @@
                                             <td> {{e.etat}} </td>
                                             <td> {{e.adresse}} </td>
                                             <td> {{e.ville}} </td>
+                                            {% if e.livreurId.nom is defined  %}
                                             <td> {{e.livreurId.nom}} </td>
+                                            {% else %}
+                                                <td> Aucun livreur associé</td>
+                                                {% endif %}
 
 
                                         </tr>

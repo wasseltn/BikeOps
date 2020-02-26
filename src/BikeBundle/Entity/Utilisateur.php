@@ -28,6 +28,15 @@ class Utilisateur extends BaseUser
      */
     private $nom;
 
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+
     /**
      * @var string
      *
@@ -259,6 +268,22 @@ class Utilisateur extends BaseUser
     public function setCarteFid($carteFid)
     {
         $this->carteFid = $carteFid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param string $ville
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
     }
 
 

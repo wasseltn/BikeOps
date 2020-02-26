@@ -40,7 +40,7 @@ class Livraison
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255,nullable=true)
      * @Assert\NotBlank
      * @Assert\Length(min="3")
      */

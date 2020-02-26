@@ -23,7 +23,11 @@
             </tr>
             <tr>
                 <th>Livreur</th>
+                {% if e.livreurId.nom is defined %}
                 <td>{{ livraison.livreurId.nom }}</td>
+                {% else %}
+                <td>Livreur non associé</td>
+                {% endif %}
             </tr>
             <tr>
                 <th>Type</th>

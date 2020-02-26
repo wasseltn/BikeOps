@@ -135,15 +135,15 @@ class EvenementController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
+            $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
+            return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId(), 'notifications'=>$notif));
         }
         $notif = $this->getDoctrine()->getRepository(Notification::class)->findAll();
         return $this->render('evenement/edit.html.twig', array(
             'evenement' => $evenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'notification' => $notif
+            'notifications' => $notif
         ));
     }
 
